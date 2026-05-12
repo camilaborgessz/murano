@@ -1,0 +1,16 @@
+export const T = {
+  navy:        '#0d1b3e',
+  navyMid:     '#122252',
+  navyLight:   '#1a2f66',
+  gold:        '#c9a84c',
+  goldLight:   '#e2c06a',
+  goldPale:    '#f5e6b8',
+  cream:       '#fdf8ee',
+  cream2:      '#f0e6d0',
+  white:       '#ffffff',
+  glassBg:     'rgba(255,255,255,0.06)',
+  glassBdr:    'rgba(201,168,76,0.25)',
+  textMuted:   'rgba(255,255,255,0.65)',
+  fontDisplay: "'Playfair Display', serif",
+  fontBody:    "'DM Sans', sans-serif",
+}

@@ -1,52 +1,73 @@
-import { useRef } from 'react'
-import { useScroll } from './hooks/useScroll'
+import { useRef, useEffect } from 'react'
+import { useScrollState } from './hooks/useScroll'
 import { SECTIONS } from './data/content'
 
-import Cursor from './components/Cursor'
-import Nav from './components/Nav'
-import Hero from './components/Hero'
-import Stats from './components/Stats'
-import About from './components/About'
-import Diferenciais from './components/Diferenciais'
-import Portfolio from './components/Portfolio'
-import GlassSection from './components/GlassSection'
-import Estrutura from './components/Estrutura'
-import Depoimentos from './components/Depoimentos'
-import CTA from './components/CTA'
-import Contato from './components/Contato'
-import Footer from './components/Footer'
+import Cursor          from './components/Cursor'
+import Nav             from './components/Nav'
+import Hero            from './components/Hero'
+import Stats           from './components/Stats'
+import About           from './components/About'
+import Diferenciais    from './components/Diferenciais'
+import Portfolio       from './components/Portfolio'
+import GlassSection    from './components/GlassSection'
+import Estrutura       from './components/Estrutura'
+import Depoimentos     from './components/Depoimentos'
+import CTA             from './components/CTA'
+import Contato         from './components/Contato'
+import Footer          from './components/Footer'
+import SectionIndicator from './components/SectionIndicator'
+import GlobalStyles    from './components/GlobalStyles'
+import { T }           from './styles/tokens'
 
 export default function App() {
-  const { scrolled, progress } = useScroll()
+  const { scrolled, progress, activeSec, setActiveSec } = useScrollState()
   const sectionRefs = useRef([])
   const setRef = (i) => (el) => { sectionRefs.current[i] = el }
-  const scrollTo = (i) => sectionRefs.current[i]?.scrollIntoView({ behavior: 'smooth' })
+  const scrollTo = (i) => {
+    sectionRefs.current[i]?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    const onScroll = () => {
+      sectionRefs.current.forEach((el, i) => {
+        if (!el) return
+        const { top, bottom } = el.getBoundingClientRect()
+        if (top <= window.innerHeight * 0.5 && bottom >= window.innerHeight * 0.5) {
+          setActiveSec(i)
+        }
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <>
+      <GlobalStyles />
       <Cursor />
 
       {/* Barra de progresso */}
       <div style={{
         position: 'fixed', top: 0, left: 0, height: 2, zIndex: 9999,
         width: `${progress}%`,
-        background: 'linear-gradient(90deg, #c9a84c, #e2c06a, #c9a84c)',
-        boxShadow: '0 0 8px #c9a84c',
-        transition: 'width 0.1s linear'
+        background: `linear-gradient(90deg, ${T.gold}, ${T.goldLight}, ${T.gold})`,
+        boxShadow: `0 0 8px ${T.gold}`,
+        transition: 'width 0.1s linear',
       }} />
 
-      <Nav scrolled={scrolled} sections={SECTIONS} scrollTo={scrollTo} />
+      <SectionIndicator active={activeSec} scrollTo={scrollTo} />
+      <Nav scrolled={scrolled} scrollTo={scrollTo} />
 
-      <section ref={setRef(0)}><Hero scrollTo={scrollTo} /></section>
+      <div ref={setRef(0)}><Hero   scrollTo={scrollTo} /></div>
       <Stats />
-      <section ref={setRef(1)}><About scrollTo={scrollTo} /></section>
-      <section ref={setRef(2)}><Diferenciais /></section>
-      <section ref={setRef(3)}><Portfolio /></section>
+      <div ref={setRef(1)}><About  scrollTo={scrollTo} /></div>
+      <div ref={setRef(2)}><Diferenciais /></div>
+      <div ref={setRef(3)}><Portfolio /></div>
       <GlassSection />
-      <section ref={setRef(4)}><Estrutura /></section>
+      <div ref={setRef(4)}><Estrutura /></div>
       <Depoimentos />
       <CTA scrollTo={scrollTo} />
-      <section ref={setRef(5)}><Contato /></section>
+      <div ref={setRef(5)}><Contato /></div>
       <Footer />
     </>
   )
