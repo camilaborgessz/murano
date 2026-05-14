@@ -45,40 +45,50 @@ export function SectionHeader({ eyebrow, title, titleSecond, light }) {
   )
 }
 
-export function BtnPrimary({ children, onClick }) {
+export function BtnPrimary({ children, onClick, style }) {
   return (
     <motion.button
       onClick={onClick}
       style={{
+        display: 'inline-flex', alignItems: 'center', gap: 10,
         background: T.gold, color: T.navy,
-        border: 'none', padding: '16px 44px',
-        fontSize: 10, fontWeight: 700, letterSpacing: '0.3em',
+        border: 'none', padding: '14px 32px',
+        fontSize: 11, fontWeight: 700, letterSpacing: '0.22em',
         textTransform: 'uppercase', cursor: 'pointer',
-        fontFamily: T.fontBody,
+        fontFamily: T.fontBody, borderRadius: 8,
+        boxShadow: '0 4px 24px rgba(201,168,76,0.28)',
+        ...style,
       }}
-      whileHover={{ background: T.goldLight }}
+      whileHover={{ background: T.goldLight, scale: 1.02, boxShadow: '0 6px 32px rgba(201,168,76,0.4)' }}
       whileTap={{ scale: 0.97 }}
     >
       {children}
+      <span style={{ fontSize: 14, lineHeight: 1 }}>→</span>
     </motion.button>
   )
 }
 
-export function BtnGhost({ children, onClick, href, style }) {
+export function BtnGhost({ children, onClick, href, dark, style }) {
   const base = {
-    background: 'transparent', color: T.navy,
-    border: `1px solid rgba(13,27,62,0.4)`,
-    padding: '16px 44px',
-    fontSize: 10, fontWeight: 600, letterSpacing: '0.25em',
+    display: 'inline-flex', alignItems: 'center', gap: 10,
+    background: 'transparent',
+    color: dark ? T.gold : T.navy,
+    border: dark ? `1.5px solid rgba(201,168,76,0.4)` : `1.5px solid rgba(13,27,62,0.3)`,
+    padding: '14px 32px',
+    fontSize: 11, fontWeight: 600, letterSpacing: '0.2em',
     textTransform: 'uppercase', cursor: 'pointer',
-    fontFamily: T.fontBody, textDecoration: 'none',
-    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    fontFamily: T.fontBody, borderRadius: 8,
+    textDecoration: 'none',
     ...style,
   }
+  const hoverProps = dark
+    ? { borderColor: T.gold, color: T.goldLight, background: 'rgba(201,168,76,0.08)' }
+    : { borderColor: T.navy, color: T.navy, background: 'rgba(13,27,62,0.05)' }
+
   if (href) {
     return (
       <motion.a href={href} style={base}
-        whileHover={{ borderColor: T.gold, color: T.gold }}
+        whileHover={hoverProps}
         whileTap={{ scale: 0.97 }}>
         {children}
       </motion.a>
@@ -86,7 +96,7 @@ export function BtnGhost({ children, onClick, href, style }) {
   }
   return (
     <motion.button onClick={onClick} style={base}
-      whileHover={{ borderColor: T.gold, color: T.gold }}
+      whileHover={hoverProps}
       whileTap={{ scale: 0.97 }}>
       {children}
     </motion.button>

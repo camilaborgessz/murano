@@ -11,6 +11,6 @@ export const T = {
   glassBg:     'rgba(255,255,255,0.06)',
   glassBdr:    'rgba(201,168,76,0.25)',
   textMuted:   'rgba(255,255,255,0.65)',
-  fontDisplay: "'Playfair Display', serif",
+  fontDisplay: "'Outfit', sans-serif",
   fontBody:    "'DM Sans', sans-serif",
 }

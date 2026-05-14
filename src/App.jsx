@@ -5,7 +5,6 @@ import { SECTIONS } from './data/content'
 import Cursor          from './components/Cursor'
 import Nav             from './components/Nav'
 import Hero            from './components/Hero'
-import Stats           from './components/Stats'
 import About           from './components/About'
 import Diferenciais    from './components/Diferenciais'
 import Portfolio       from './components/Portfolio'
@@ -59,7 +58,6 @@ export default function App() {
       <Nav scrolled={scrolled} scrollTo={scrollTo} />
 
       <div ref={setRef(0)}><Hero   scrollTo={scrollTo} /></div>
-      <Stats />
       <div ref={setRef(1)}><About  scrollTo={scrollTo} /></div>
       <div ref={setRef(2)}><Diferenciais /></div>
       <div ref={setRef(3)}><Portfolio /></div>
