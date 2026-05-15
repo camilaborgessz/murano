@@ -310,12 +310,8 @@ export default function Hero({ scrollTo }) {
           .hero-section .hero-text img {
             height: 48px !important;
           }
-          /* limita parágrafo a 3 linhas */
           .hero-section .hero-text p {
-            display: -webkit-box !important;
-            -webkit-line-clamp: 3 !important;
-            -webkit-box-orient: vertical !important;
-            overflow: hidden !important;
+            font-size: 14px !important;
           }
 
           .hero-scroll-hint { display: none !important; }
@@ -331,8 +327,7 @@ export default function Hero({ scrollTo }) {
           .hero-section .hero-text img { height: 40px !important; }
           .hero-section h1 { font-size: 32px !important; }
           .hero-section .hero-text p {
-            font-size: 12px !important;
-            -webkit-line-clamp: 2 !important;
+            font-size: 13px !important;
           }
           /* linhas menores no SE para caber no viewport */
           .hero-cards {
