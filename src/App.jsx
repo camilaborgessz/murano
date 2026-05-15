@@ -43,7 +43,7 @@ export default function App() {
       <GlobalStyles />
       <Cursor />
 
-      {/* Barra de progresso */}
+      {/* Barra de progresso topo */}
       <div style={{
         position: 'fixed', top: 0, left: 0, height: 2, zIndex: 9999,
         width: `${progress}%`,
@@ -51,6 +51,21 @@ export default function App() {
         boxShadow: `0 0 8px ${T.gold}`,
         transition: 'width 0.1s linear',
       }} />
+
+      {/* Barra de scroll lateral – funciona em mobile e desktop */}
+      <div style={{
+        position: 'fixed', top: 0, right: 0, width: 4,
+        height: '100vh', zIndex: 9998,
+        background: T.navy,
+      }}>
+        <div style={{
+          width: '100%',
+          height: `${progress}%`,
+          background: `linear-gradient(to bottom, ${T.gold}, ${T.goldLight})`,
+          boxShadow: `0 0 6px ${T.gold}`,
+          transition: 'height 0.1s linear',
+        }} />
+      </div>
 
       <SectionIndicator active={activeSec} scrollTo={scrollTo} />
       <Nav scrolled={scrolled} scrollTo={scrollTo} />
