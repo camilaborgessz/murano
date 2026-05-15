@@ -157,7 +157,7 @@ export default function Diferenciais() {
           }}
         >
           <img
-            src="/murano6.jpeg"
+            src={`${import.meta.env.BASE_URL}murano6.jpeg`}
             alt="Equipe Murano Eventos"
             style={{
               width: '100%', display: 'block',

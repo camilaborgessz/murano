@@ -42,7 +42,7 @@ export default function Hero({ scrollTo }) {
         >
           {/* ── Logo ── */}
           <motion.div variants={fadeUp}>
-            <img src="/favicon.ico" alt="Murano Eventos" style={{ height: 64, width: 'auto', display: 'block' }} />
+            <img src={`${import.meta.env.BASE_URL}favicon.ico`} alt="Murano Eventos" style={{ height: 64, width: 'auto', display: 'block' }} />
           </motion.div>
 
           <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -104,7 +104,7 @@ export default function Hero({ scrollTo }) {
             borderRadius: 18, overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(13,27,62,0.13)',
           }}>
-            <img src="/murano2.jpeg" alt="Evento Murano"
+            <img src={`${import.meta.env.BASE_URL}murano2.jpeg`} alt="Evento Murano"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </motion.div>
 
@@ -177,7 +177,7 @@ export default function Hero({ scrollTo }) {
             borderRadius: 18, overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(13,27,62,0.13)',
           }}>
-            <img src="/murano3.jpeg" alt="Murano Espaço"
+            <img src={`${import.meta.env.BASE_URL}murano3.jpeg`} alt="Murano Espaço"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </motion.div>
         </motion.div>

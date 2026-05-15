@@ -184,7 +184,7 @@ export default function About({ scrollTo }) {
               boxShadow: '0 32px 80px rgba(0,0,0,0.4)',
             }}>
               <img
-                src="/murano1.jpeg"
+                src={`${import.meta.env.BASE_URL}murano1.jpeg`}
                 alt="Murano Eventos"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />

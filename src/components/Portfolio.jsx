@@ -5,14 +5,15 @@ import { useReveal } from '../hooks/useReveal'
 import { SectionHeader } from './shared'
 
 /* Cada imagem tem um aspect-ratio para variar o ritmo visual */
+const base = import.meta.env.BASE_URL
 const IMAGES = [
-  { src: '/murano1.jpeg', ratio: '4/3'  },
-  { src: '/murano2.jpeg', ratio: '3/4'  },
-  { src: '/murano3.jpeg', ratio: '16/9' },
-  { src: '/murano4.jpeg', ratio: '4/3'  },
-  { src: '/murano5.jpeg', ratio: '3/4'  },
-  { src: '/murano6.jpeg', ratio: '1/1'  },
-  { src: '/murano7.jpeg', ratio: '16/9' },
+  { src: `${base}murano1.jpeg`, ratio: '4/3'  },
+  { src: `${base}murano2.jpeg`, ratio: '3/4'  },
+  { src: `${base}murano3.jpeg`, ratio: '16/9' },
+  { src: `${base}murano4.jpeg`, ratio: '4/3'  },
+  { src: `${base}murano5.jpeg`, ratio: '3/4'  },
+  { src: `${base}murano6.jpeg`, ratio: '1/1'  },
+  { src: `${base}murano7.jpeg`, ratio: '16/9' },
 ]
 
 /* Linhas com ordem diferente para não ficarem idênticas */
