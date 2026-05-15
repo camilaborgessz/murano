@@ -276,57 +276,67 @@ export default function Hero({ scrollTo }) {
         .hero-cta   { grid-area: cta; }
         .hero-cards {
           grid-area: cards;
-          align-self: stretch;
+          align-self: center;
         }
 
         /* ── Mobile (≤ 860px) ─────────────────────────────── */
         @media (max-width: 860px) {
           .hero-section {
             align-items: flex-start !important;
-            /* overflow:hidden inline impede a seção de crescer além de 100vh;
-               o body já tem overflow-x:hidden, então visible aqui é seguro */
-            overflow: visible !important;
+            /* clip: não cria BFC (a seção cresce com o conteúdo) e bloqueia
+               overflow decorativo horizontal, eliminando a barra branca lateral */
+            overflow: clip !important;
             min-height: 100svh !important;
           }
 
           .hero-layout {
             display: flex !important;
             flex-direction: column !important;
-            padding: 84px 20px 48px !important;
-            gap: 22px !important;
+            padding: 80px 20px 40px !important;
+            gap: 18px !important;
           }
 
-          .hero-text  { order: 1; padding-bottom: 0 !important; gap: 16px !important; }
+          .hero-text  { order: 1; padding-bottom: 0 !important; gap: 14px !important; }
           .hero-cta   { order: 2; }
           .hero-cards {
             order: 3;
-            height: clamp(210px, 58vw, 310px) !important;
+            /* altura automática + linhas explícitas garante as 2 linhas visíveis */
+            height: auto !important;
+            grid-template-rows: 130px 130px !important;
             gap: 10px !important;
-            overflow: hidden;
+          }
+
+          /* reduz logo no mobile para economizar altura */
+          .hero-section .hero-text img {
+            height: 48px !important;
+          }
+          /* limita parágrafo a 3 linhas */
+          .hero-section .hero-text p {
+            display: -webkit-box !important;
+            -webkit-line-clamp: 3 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
           }
 
           .hero-scroll-hint { display: none !important; }
         }
 
-        /* ── iPhone SE e telas muito pequenas (≤ 390px) ──── */
-        @media (max-width: 390px) {
+        /* ── iPhone SE e telas muito pequenas (≤ 400px) ──── */
+        @media (max-width: 400px) {
           .hero-layout {
-            padding: 72px 16px 40px !important;
-            gap: 18px !important;
+            padding: 68px 16px 32px !important;
+            gap: 14px !important;
           }
-          .hero-text { gap: 12px !important; }
-          .hero-section h1 {
-            font-size: 36px !important;
+          .hero-text { gap: 10px !important; }
+          .hero-section .hero-text img { height: 40px !important; }
+          .hero-section h1 { font-size: 32px !important; }
+          .hero-section .hero-text p {
+            font-size: 12px !important;
+            -webkit-line-clamp: 2 !important;
           }
-          .hero-section p {
-            font-size: 13px !important;
-            -webkit-line-clamp: 3;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
+          /* linhas menores no SE para caber no viewport */
           .hero-cards {
-            height: 190px !important;
+            grid-template-rows: 105px 105px !important;
           }
         }
 

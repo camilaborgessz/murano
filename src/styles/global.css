@@ -22,19 +22,20 @@
   --font-body:    'DM Sans', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
 body {
   font-family: var(--font-body);
   background: var(--cream);
   color: var(--navy);
   overflow-x: hidden;
-  cursor: none;           /* cursor customizado via Cursor.jsx */
+  cursor: none;
+  max-width: 100%;
 }
 
-/* Scrollbar oculta */
-html {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
 ::-webkit-scrollbar { display: none; }
