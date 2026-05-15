@@ -32,7 +32,7 @@ export default function Footer({ scrollTo }) {
         {/* ── Marca ── */}
         <div>
           <img
-            src="/favicon.ico"
+            src={`${import.meta.env.BASE_URL}favicon.ico`}
             alt="Murano Eventos"
             style={{ height: 56, width: 'auto', marginBottom: 20, display: 'block' }}
           />

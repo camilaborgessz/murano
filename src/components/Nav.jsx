@@ -30,7 +30,7 @@ export default function Nav({ scrolled, scrollTo }) {
       <nav style={navStyle}>
         {/* Logo */}
         <img
-          src="/favicon.ico"
+          src={`${import.meta.env.BASE_URL}favicon.ico`}
           alt="Murano"
           onClick={() => scrollTo(0)}
           style={{ height: 46, cursor: 'pointer', objectFit: 'contain' }}
