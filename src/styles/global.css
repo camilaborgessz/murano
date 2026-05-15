@@ -32,7 +32,9 @@ body {
   cursor: none;           /* cursor customizado via Cursor.jsx */
 }
 
-/* Scrollbar */
-::-webkit-scrollbar       { width: 4px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+/* Scrollbar oculta */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar { display: none; }
