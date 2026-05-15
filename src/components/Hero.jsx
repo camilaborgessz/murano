@@ -137,7 +137,7 @@ export default function Hero({ scrollTo }) {
 
           {/* 500+ Eventos */}
           <motion.div className="hero-card" variants={fadeUp} style={{
-            borderRadius: 18, background: T.navy,
+            borderRadius: 18, background: T.navy, overflow: 'hidden',
             boxShadow: '0 12px 40px rgba(13,27,62,0.22)',
             display: 'flex', flexDirection: 'column',
             justifyContent: 'space-between', padding: '22px 24px',
