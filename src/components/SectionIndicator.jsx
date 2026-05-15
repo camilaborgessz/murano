@@ -41,14 +41,9 @@ export default function SectionIndicator({ active, scrollTo }) {
           width: 6px;
           height: 6px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
           .section-indicator {
-            right: 10px;
-            gap: 14px;
-          }
-          .section-dot {
-            width: 10px;
-            height: 10px;
+            display: none;
           }
         }
       `}</style>

@@ -281,29 +281,53 @@ export default function Hero({ scrollTo }) {
 
         /* ── Mobile (≤ 860px) ─────────────────────────────── */
         @media (max-width: 860px) {
-          /* align-items: center (inline) centraliza verticalmente e causa
-             sobreposição quando o conteúdo ultrapassa 100vh */
           .hero-section {
             align-items: flex-start !important;
+            /* overflow:hidden inline impede a seção de crescer além de 100vh;
+               o body já tem overflow-x:hidden, então visible aqui é seguro */
+            overflow: visible !important;
+            min-height: 100svh !important;
           }
 
           .hero-layout {
             display: flex !important;
             flex-direction: column !important;
-            padding: 84px 20px 44px !important;
-            gap: 24px !important;
+            padding: 84px 20px 48px !important;
+            gap: 22px !important;
           }
 
-          .hero-text  { order: 1; padding-bottom: 0 !important; }
+          .hero-text  { order: 1; padding-bottom: 0 !important; gap: 16px !important; }
           .hero-cta   { order: 2; }
           .hero-cards {
             order: 3;
-            height: clamp(220px, 56vw, 310px) !important;
+            height: clamp(210px, 58vw, 310px) !important;
             gap: 10px !important;
             overflow: hidden;
           }
 
           .hero-scroll-hint { display: none !important; }
+        }
+
+        /* ── iPhone SE e telas muito pequenas (≤ 390px) ──── */
+        @media (max-width: 390px) {
+          .hero-layout {
+            padding: 72px 16px 40px !important;
+            gap: 18px !important;
+          }
+          .hero-text { gap: 12px !important; }
+          .hero-section h1 {
+            font-size: 36px !important;
+          }
+          .hero-section p {
+            font-size: 13px !important;
+            -webkit-line-clamp: 3;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .hero-cards {
+            height: 190px !important;
+          }
         }
 
         /* ── Tablet (861 – 1080px) ────────────────────────── */
