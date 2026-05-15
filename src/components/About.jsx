@@ -7,24 +7,26 @@ import { stagger, fadeUp, fadeLeft, fadeRight, BtnPrimary } from './shared'
 /* ── Palavra destacada com sweep de fundo dourado ─────────── */
 function Mark({ children, delay = 0 }) {
   return (
-    <span style={{ position: 'relative', display: 'inline', color: T.goldLight, fontWeight: 600 }}>
-      <motion.span
-        aria-hidden
-        style={{
-          position: 'absolute',
-          inset: '1px -4px 0px -4px',
-          background: 'rgba(201,168,76,0.14)',
-          borderRadius: 3,
-          transformOrigin: 'left center',
-          zIndex: 0,
-        }}
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-      />
-      <span style={{ position: 'relative', zIndex: 1 }}>{children}</span>
-    </span>
+    <motion.span
+      style={{
+        color: T.goldLight,
+        fontWeight: 600,
+        display: 'inline',
+        backgroundImage: 'linear-gradient(rgba(201,168,76,0.18), rgba(201,168,76,0.18))',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'left center',
+        padding: '1px 3px',
+        borderRadius: 2,
+        WebkitBoxDecorationBreak: 'clone',
+        boxDecorationBreak: 'clone',
+      }}
+      initial={{ backgroundSize: '0% 100%' }}
+      whileInView={{ backgroundSize: '100% 100%' }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.span>
   )
 }
 

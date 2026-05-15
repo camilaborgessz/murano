@@ -2,21 +2,19 @@ import { useRef, useEffect } from 'react'
 import { useScrollState } from './hooks/useScroll'
 import { SECTIONS } from './data/content'
 
-import Cursor          from './components/Cursor'
-import Nav             from './components/Nav'
-import Hero            from './components/Hero'
-import About           from './components/About'
-import Diferenciais    from './components/Diferenciais'
-import Portfolio       from './components/Portfolio'
-import GlassSection    from './components/GlassSection'
-import Estrutura       from './components/Estrutura'
-import Depoimentos     from './components/Depoimentos'
-import CTA             from './components/CTA'
-import Contato         from './components/Contato'
-import Footer          from './components/Footer'
+import Cursor from './components/Cursor'
+import Nav from './components/Nav'
+import Hero from './components/Hero'
+import About from './components/About'
+import Diferenciais from './components/Diferenciais'
+import Portfolio from './components/Portfolio'
+import Estrutura from './components/Estrutura'
+import Depoimentos from './components/Depoimentos'
+import Contato from './components/Contato'
+import Footer from './components/Footer'
 import SectionIndicator from './components/SectionIndicator'
-import GlobalStyles    from './components/GlobalStyles'
-import { T }           from './styles/tokens'
+import GlobalStyles from './components/GlobalStyles'
+import { T } from './styles/tokens'
 
 export default function App() {
   const { scrolled, progress, activeSec, setActiveSec } = useScrollState()
@@ -57,16 +55,14 @@ export default function App() {
       <SectionIndicator active={activeSec} scrollTo={scrollTo} />
       <Nav scrolled={scrolled} scrollTo={scrollTo} />
 
-      <div ref={setRef(0)}><Hero   scrollTo={scrollTo} /></div>
-      <div ref={setRef(1)}><About  scrollTo={scrollTo} /></div>
+      <div ref={setRef(0)}><Hero scrollTo={scrollTo} /></div>
+      <div ref={setRef(1)}><About scrollTo={scrollTo} /></div>
       <div ref={setRef(2)}><Diferenciais /></div>
       <div ref={setRef(3)}><Portfolio /></div>
-      <GlassSection />
       <div ref={setRef(4)}><Estrutura /></div>
       <Depoimentos />
-      <CTA scrollTo={scrollTo} />
       <div ref={setRef(5)}><Contato /></div>
-      <Footer />
+      <Footer scrollTo={scrollTo} />
     </>
   )
 }

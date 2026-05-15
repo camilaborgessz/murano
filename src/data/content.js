@@ -8,12 +8,12 @@ export const STATS = [
 ]
 
 export const DIFERENCIAIS = [
-  { num: "01", icon: "✦", title: "Atendimento Personalizado", desc: "Cada evento é único. Nossa equipe dedica atenção exclusiva, criando projetos sob medida que refletem sua visão e superam expectativas." },
-  { num: "02", icon: "◈", title: "Estrutura Completa",        desc: "Banheiros amplos e impecáveis, cozinha industrial qualificada, salão versátil — tudo em um único espaço de excelência." },
-  { num: "03", icon: "❋", title: "Buffet de Alto Padrão",    desc: "Gastronomia refinada com apresentação impecável: ilhas de frios, mini porções, sobremesas e louças selecionadas." },
-  { num: "04", icon: "◇", title: "Decoração Exclusiva",      desc: "Projetos decorativos pensados do zero, com atenção meticulosa a cada detalhe e ambientações únicas." },
-  { num: "05", icon: "✧", title: "Equipe Especializada",     desc: "Profissionais experientes e apaixonados por eventos. Do planejamento à execução, excelência em cada etapa." },
-  { num: "06", icon: "⬡", title: "Locação de Materiais",    desc: "Amplo catálogo de móveis, iluminação e objetos decorativos para compor o cenário perfeito." },
+  { num: "01", title: "Atendimento Personalizado", desc: "Cada evento é único. Nossa equipe dedica atenção exclusiva, criando projetos sob medida que refletem sua visão e superam expectativas." },
+  { num: "02", title: "Estrutura Completa",        desc: "Banheiros amplos e impecáveis, cozinha industrial qualificada, salão versátil — tudo em um único espaço de excelência." },
+  { num: "03", title: "Buffet de Alto Padrão",    desc: "Gastronomia refinada com apresentação impecável: ilhas de frios, mini porções, sobremesas e louças selecionadas." },
+  { num: "04", title: "Decoração Exclusiva",      desc: "Projetos decorativos pensados do zero, com atenção meticulosa a cada detalhe e ambientações únicas." },
+  { num: "05", title: "Equipe Especializada",     desc: "Profissionais experientes e apaixonados por eventos. Do planejamento à execução, excelência em cada etapa." },
+  { num: "06", title: "Locação de Materiais",    desc: "Amplo catálogo de móveis, iluminação e objetos decorativos para compor o cenário perfeito." },
 ]
 
 export const TABS = ["Casamentos", "Formaturas", "Corporativo", "15 Anos", "Aniversários", "Personalizado"]
@@ -28,9 +28,11 @@ export const TAB_COLORS = {
 }
 
 export const DEPOIMENTOS = [
-  { text: "A Murano transformou nosso casamento em algo além do que sonhamos. Cada detalhe foi executado com perfeição absoluta.", author: "Camila & Rafael", role: "Casamento" },
-  { text: "Nossa convenção corporativa foi um sucesso total. Estrutura impecável, equipe profissional e entrega acima das expectativas.", author: "Marina Costa", role: "Diretora Executiva" },
-  { text: "A festa de 15 anos da minha filha foi simplesmente mágica. O buffet, a decoração, tudo estava perfeito.", author: "Família Rodrigues", role: "Festa de 15 Anos" },
+  { text: "E que lugar incrível, certeza que será local de muita realização de sonhos! Deus abençoe grandemente, cada vez mais!", author: "Jamille"},
+  { text: "Parabéns ao casal que tanto nos inspira! Que alegria receber essa notícia maravilhosa Nossa cidade se enche de gratidão por esse espaço tão especial que vocês criaram. Que venham muitos casamentos lindos, repletos de amor, música e emoção! ", author: "Vivara" },
+  { text: "Quebraram todas as objeções possíveis em um único vídeo. Parabéns por investirem na nossa cidade. O público merece um empreendimento desse porte! Até logo, esse final de semana somos nós aí.", author: "Play Sonora"},
+  { text: "Gente! Vocês arrasaram muito! Parabéns Janaína e Pedro, nossa cidade merece um lugar assim ", author: "Júlia Azevedo"},
+  { text: "Parabéns, pvh precisa de espaços com uma entrega de excelência", author: "Leonardo"},
 ]
 
 export const ESTRUTURA = [

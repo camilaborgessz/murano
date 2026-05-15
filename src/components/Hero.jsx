@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { T } from '../styles/tokens'
 import { stagger, fadeUp, fadeRight } from './shared'
 import HeroCanvas from './HeroCanvas'
+import MuranoLogo from './Logo'
 
 export default function Hero({ scrollTo }) {
   const goContact = () => scrollTo(5)
@@ -39,6 +40,11 @@ export default function Hero({ scrollTo }) {
           variants={stagger(0.13)}
           style={{ display: 'flex', flexDirection: 'column', gap: 28 }}
         >
+          {/* ── Logo ── */}
+          <motion.div variants={fadeUp}>
+            <img src="/favicon.ico" alt="Murano Eventos" style={{ height: 64, width: 'auto', display: 'block' }} />
+          </motion.div>
+
           <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ display: 'inline-block', width: 32, height: 2, background: T.gold, flexShrink: 0 }} />
             <span style={{
