@@ -75,7 +75,7 @@ export default function Hero({ scrollTo }) {
             color: 'rgba(13,27,62,0.58)', margin: 0, maxWidth: 460,
           }}>
             Da decoração exclusiva ao buffet de alto padrão, a Murano cuida de
-            cada detalhe para que você viva momentos inesquecíveis — com
+            cada detalhe para que você viva momentos inesquecíveis com
             estrutura completa, equipe especializada e atenção total à sua história.
           </motion.p>
 
@@ -295,12 +295,13 @@ export default function Hero({ scrollTo }) {
           }
 
           .hero-text  { order: 1; padding-bottom: 0 !important; }
+          .hero-cta   { order: 2; }
           .hero-cards {
-            order: 2;
+            order: 3;
             height: clamp(220px, 56vw, 310px) !important;
             gap: 10px !important;
+            overflow: hidden;
           }
-          .hero-cta   { order: 3; margin-top: 50px; }
 
           .hero-scroll-hint { display: none !important; }
         }
