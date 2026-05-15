@@ -12,8 +12,9 @@ export default function GlobalStyles() {
         overflow-x: hidden;
         cursor: none;
       }
-      ::-webkit-scrollbar { width: 0; background: transparent; }
-      * { scrollbar-width: none; }
+      ::-webkit-scrollbar       { width: 4px; }
+      ::-webkit-scrollbar-track { background: #0d1b3e; }
+      ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 2px; }
 
       @media (max-width: 768px) {
         body { cursor: auto; }
