@@ -32,10 +32,10 @@ function Mark({ children, delay = 0 }) {
 
 /* ── Chip de serviço interativo ────────────────────────────── */
 const SERVICES = [
-  { icon: '✦', label: 'Decoração', desc: 'Projetos exclusivos do zero' },
-  { icon: '◈', label: 'Buffet', desc: 'Gastronomia de alto padrão' },
-  { icon: '❋', label: 'Locação', desc: 'Mobiliário e iluminação' },
-  { icon: '◇', label: 'Espaço', desc: 'Estrutura completa premium' },
+  { label: 'Decoração', desc: 'Projetos exclusivos do zero' },
+  { label: 'Buffet', desc: 'Gastronomia de alto padrão' },
+  { label: 'Locação', desc: 'Mobiliário e iluminação' },
+  { label: 'Espaço', desc: 'Estrutura completa premium' },
 ]
 
 function ServiceChip({ icon, label, desc }) {
@@ -252,11 +252,13 @@ export default function About({ scrollTo }) {
               color: 'rgba(255,255,255,0.75)',
               lineHeight: 1.7,
             }}>
-              "Transformamos sonhos em experiências{' '}
-              <Mark delay={0.1}>inesquecíveis</Mark>
-              {' '} com sofisticação,{' '}
-              <Mark delay={0.2}>expertise</Mark>
-              {' '}e comprometimento absoluto com cada detalhe."
+              "Na Murano, acreditamos que grandes marcas também são construídas através das{' '}
+              <Mark delay={0.1}> experiências</Mark>
+              {' '} que proporcionam. Por isso, transformamos eventos corporativos em momentos marcantes, capazes de fortalecer{' '}
+              <Mark delay={0.2}>conexões,</Mark>
+              {' '} valorizar pessoas e transmitir a {' '}
+              <Mark delay={0.1}> essência de cada empresa</Mark>
+              {' '}  com sofisticação e excelência.
             </motion.blockquote>
 
             {/* Parágrafos */}
@@ -266,20 +268,19 @@ export default function About({ scrollTo }) {
                 fontWeight: 400, lineHeight: 1.85,
                 color: 'rgba(255,255,255,0.55)', margin: 0,
               }}>
-                A Murano nasceu da paixão por criar momentos que ficam na memória para sempre.
-                Com mais de uma década de história, nos consolidamos como{' '}
-                <Mark delay={0.15}>referência em excelência</Mark>,
-                {' '}oferecendo soluções completas que vão da decoração ao buffet,
-                da locação à estrutura do espaço.
+                Com o espaço mais completo de porto velho, nos tornamos{' '}
+                <Mark delay={0.15}>referência</Mark>,
+                {' '} na criação de eventos corporativos personalizados, unindo {' '}
+                <Mark delay={0.15}>planejamento</Mark>,
+                {' '} estética, gastronomia e estrutura para entregar experiências memoráveis a clientes, colaboradores e parceiros. 
               </p>
               <p style={{
                 fontFamily: T.fontBody, fontSize: 'clamp(13px, 1.2vw, 15px)',
                 fontWeight: 400, lineHeight: 1.85,
                 color: 'rgba(255,255,255,0.55)', margin: 0,
               }}>
-                De celebrações{' '}<Mark delay={0.2}>intimistas</Mark>{' '}
-                a grandes eventos corporativos a Murano está pronta para tornar
-                seu evento{' '}<Mark delay={0.25}>verdadeiramente extraordinário</Mark>.
+                Cada projeto é pensado de forma estratégica e exclusiva, alinhando elegância, funcionalidade e{' '}<Mark delay={0.2}> identidade da marca</Mark>{' '}
+                para criar ambientes que impressionam, acolhem e geram{' '}<Mark delay={0.25}>conexões reais.</Mark>
               </p>
             </motion.div>
 

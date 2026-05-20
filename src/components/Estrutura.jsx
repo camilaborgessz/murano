@@ -1,23 +1,18 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { T } from '../styles/tokens'
 import { useReveal } from '../hooks/useReveal'
 import { ESTRUTURA } from '../data/content'
-import { stagger, fadeUp, fadeLeft, fadeRight } from './shared'
 
-/* ── Marca texto igual ao About ─────────────────────── */
 function Mark({ children, delay = 0 }) {
   return (
     <motion.span
       style={{
-        color: T.gold, fontWeight: 800,
-        display: 'inline',
+        color: T.gold, fontWeight: 800, display: 'inline',
         backgroundImage: 'linear-gradient(rgba(201,168,76,0.18), rgba(201,168,76,0.18))',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'left center',
+        backgroundRepeat: 'no-repeat', backgroundPosition: 'left center',
         padding: '2px 5px', borderRadius: 3,
-        WebkitBoxDecorationBreak: 'clone',
-        boxDecorationBreak: 'clone',
+        WebkitBoxDecorationBreak: 'clone', boxDecorationBreak: 'clone',
       }}
       initial={{ backgroundSize: '0% 100%' }}
       whileInView={{ backgroundSize: '100% 100%' }}
@@ -29,47 +24,26 @@ function Mark({ children, delay = 0 }) {
   )
 }
 
-/* ── Ícones por item ────────────────────────────────── */
-const ICONS = [
-  /* Banheiros — banheira */
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 9 12"/><path d="M9 6a2 2 0 0 1 4 0v1"/><path d="M2 12h20v2a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6v-2z"/><path d="M6 20v2M18 20v2"/></svg>,
-  /* Cozinha */
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>,
-  /* Salão */
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
-  /* Área Externa — sol */
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
-]
-
-/* ── Instagram embed ────────────────────────────────── */
 function InstagramEmbed({ url }) {
   useEffect(() => {
-    const load = () => {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process()
-      }
-    }
+    const load = () => { if (window.instgrm) window.instgrm.Embeds.process() }
     if (!document.querySelector('script[src*="instagram.com/embed.js"]')) {
       const s = document.createElement('script')
       s.src = 'https://www.instagram.com/embed.js'
-      s.async = true
-      s.onload = load
+      s.async = true; s.onload = load
       document.body.appendChild(s)
-    } else {
-      load()
-    }
+    } else { load() }
   }, [url])
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <blockquote
         className="instagram-media"
         data-instgrm-permalink={url}
         data-instgrm-version="14"
         style={{
           background: '#fff', border: 0, borderRadius: 16,
-          margin: 0, padding: 0,
-          width: '100%', maxWidth: 420,
+          margin: 0, padding: 0, width: '100%', maxWidth: 420,
           boxShadow: '0 16px 48px rgba(13,27,62,0.13)',
         }}
       />
@@ -77,10 +51,36 @@ function InstagramEmbed({ url }) {
   )
 }
 
-/* ── Componente principal ───────────────────────────── */
 export default function Estrutura() {
-  const leftReveal  = useReveal(0.15)
-  const rightReveal = useReveal(0.15)
+  const titleReveal = useReveal(0.15)
+  const bodyReveal  = useReveal(0.1)
+  const [current, setCurrent] = useState(0)
+  const [dir, setDir] = useState(1)
+  const [dragX, setDragX] = useState(0)
+  const dragStart = useRef(null)
+
+  const go = (next) => {
+    setDir(next > current ? 1 : -1)
+    setCurrent(next)
+  }
+  const prev = () => current > 0 && go(current - 1)
+  const next = () => current < ESTRUTURA.length - 1 && go(current + 1)
+
+  const onCardPointerDown = (e) => {
+    dragStart.current = e.clientX
+    e.currentTarget.setPointerCapture(e.pointerId)
+  }
+  const onCardPointerMove = (e) => {
+    if (dragStart.current === null) return
+    setDragX(e.clientX - dragStart.current)
+  }
+  const onCardPointerUp = () => {
+    if (dragStart.current === null) return
+    if (dragX < -50) next()
+    else if (dragX > 50) prev()
+    setDragX(0)
+    dragStart.current = null
+  }
 
   return (
     <section style={{
@@ -88,84 +88,191 @@ export default function Estrutura() {
       background: T.cream,
     }}>
 
-      {/* ── Título ── */}
+      {/* Título */}
       <motion.div
+        ref={titleReveal.ref}
         initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={titleReveal.inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
         transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
-        style={{ textAlign: 'center', marginBottom: 72 }}
+        style={{ textAlign: 'center', marginBottom: 56 }}
       >
-        <span style={{
-          display: 'block', fontSize: 10, fontWeight: 600,
-          letterSpacing: '0.45em', textTransform: 'uppercase',
-          color: T.gold, marginBottom: 20,
-        }}>
-          Infraestrutura
-        </span>
         <h2 style={{
           fontFamily: T.fontDisplay,
           fontSize: 'clamp(36px,5.5vw,68px)',
-          lineHeight: 1.1, margin: 0,
-          letterSpacing: '-0.02em',
+          lineHeight: 1.1, margin: 0, letterSpacing: '-0.02em',
         }}>
           <span style={{ fontWeight: 300, fontStyle: 'italic', color: T.navyLight }}>Cada detalhe foi</span>
-          {/* <span style={{ fontWeight: 800, color: T.navy }}>foi</span> */}
           <br />
           <Mark delay={0.3}>pensado para você</Mark>
         </h2>
-
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          gap: 12, marginTop: 20,
-        }}>
-          <span style={{ width: 40, height: 1.5, background: `linear-gradient(90deg, transparent, ${T.gold})`, display: 'block' }} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 20 }}>
+          <span style={{ width: 40, height: 1.5, background: `linear-gradient(90deg,transparent,${T.gold})`, display: 'block' }} />
           <span style={{ color: T.gold, fontSize: 12, opacity: 0.7 }}>✦</span>
-          <span style={{ width: 40, height: 1.5, background: `linear-gradient(90deg, ${T.gold}, transparent)`, display: 'block' }} />
+          <span style={{ width: 40, height: 1.5, background: `linear-gradient(90deg,${T.gold},transparent)`, display: 'block' }} />
         </div>
       </motion.div>
 
-      {/* ── Grid principal ── */}
-      <div style={{
-        maxWidth: 1200, margin: '0 auto',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: 'clamp(32px,5vw,64px)',
-        alignItems: 'center',
-      }}>
+      {/* Layout: slider (esquerda) + Instagram (direita) */}
+      <motion.div
+        ref={bodyReveal.ref}
+        initial={{ opacity: 0, y: 24 }}
+        animate={bodyReveal.inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+        transition={{ duration: 0.6 }}
+        className="estrutura-outer"
+        style={{
+          maxWidth: 1000, margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: '1fr 360px',
+          gap: 'clamp(32px,5vw,64px)',
+          alignItems: 'center',
+        }}
+      >
+        {/* Slider */}
+        <div style={{ position: 'relative' }}>
 
-        {/* Cards 2×2 */}
-        <motion.div
-          ref={leftReveal.ref}
-          variants={stagger(0.1)}
-          initial="hidden"
-          animate={leftReveal.inView ? 'visible' : 'hidden'}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 16,
-          }}
-        >
-          {ESTRUTURA.map((item, i) => (
-            <EstruturCard key={item.num} item={item} icon={ICONS[i]} />
-          ))}
-        </motion.div>
+          {/* Plano de fundo decorativo */}
+          <div aria-hidden="true" style={{
+            position: 'absolute',
+            top: -32, left: -32, right: -32, bottom: -32,
+            borderRadius: 28,
+            background: `radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 65%),
+                         radial-gradient(ellipse at 80% 20%, rgba(13,27,62,0.05) 0%, transparent 55%)`,
+            pointerEvents: 'none',
+          }} />
 
-        {/* Instagram embed */}
-        <motion.div
-          ref={rightReveal.ref}
-          variants={fadeRight}
-          initial="hidden"
-          animate={rightReveal.inView ? 'visible' : 'hidden'}
-        >
+          {/* Card com setas nas laterais */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+
+            <NavBtn onClick={prev} disabled={current === 0} dir="left" />
+
+            {/* Card */}
+            <div
+              onPointerDown={onCardPointerDown}
+              onPointerMove={onCardPointerMove}
+              onPointerUp={onCardPointerUp}
+              onPointerLeave={onCardPointerUp}
+              style={{ flex: 1, position: 'relative', overflow: 'hidden', borderRadius: 20, minHeight: 260,
+                background: `linear-gradient(135deg, #ffffff 0%, ${T.cream} 100%)`,
+                border: `1px solid rgba(201,168,76,0.22)`,
+                boxShadow: '0 12px 48px rgba(13,27,62,0.1)',
+                transform: `translateX(${dragX * 0.35}px) rotate(${dragX * 0.015}deg)`,
+                transition: dragStart.current ? 'none' : 'transform 0.3s ease',
+                cursor: dragX !== 0 ? (dragX > 0 ? 'w-resize' : 'e-resize') : 'grab',
+                touchAction: 'pan-y',
+                userSelect: 'none',
+              }}>
+
+              {/* Número gigante de fundo */}
+              <div aria-hidden="true" style={{
+                position: 'absolute', bottom: -20, right: 16,
+                fontFamily: T.fontDisplay, fontSize: 'clamp(90px,14vw,140px)',
+                fontWeight: 800, lineHeight: 1,
+                color: 'rgba(13,27,62,0.045)',
+                userSelect: 'none', pointerEvents: 'none',
+                letterSpacing: '-0.04em',
+              }}>
+                {ESTRUTURA[current].num}
+              </div>
+
+              {/* Canto dourado superior esquerdo */}
+              <div style={{
+                position: 'absolute', top: 0, left: 0,
+                width: 48, height: 48, pointerEvents: 'none',
+                background: `linear-gradient(135deg, rgba(201,168,76,0.18) 0%, transparent 60%)`,
+                borderRadius: '20px 0 0 0',
+              }} />
+
+              {/* Linha dourada lateral esquerda */}
+              <div style={{
+                position: 'absolute', top: 24, bottom: 24, left: 0,
+                width: 3, borderRadius: '0 2px 2px 0',
+                background: `linear-gradient(to bottom, ${T.gold}, ${T.goldLight}, transparent)`,
+              }} />
+
+              <AnimatePresence mode="wait" custom={dir}>
+                <motion.div
+                  key={current}
+                  custom={dir}
+                  initial={{ opacity: 0, x: dir * 32 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: dir * -32 }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  style={{ padding: 'clamp(24px,3.5vw,36px) clamp(24px,3.5vw,36px) clamp(24px,3.5vw,36px) clamp(28px,4vw,40px)', position: 'relative', zIndex: 1 }}
+                >
+                  {/* Número + contador */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                    <span style={{
+                      fontFamily: T.fontDisplay, fontSize: 10, fontWeight: 700,
+                      letterSpacing: '0.24em', color: T.gold,
+                    }}>
+                      {ESTRUTURA[current].num}
+                    </span>
+                    <span style={{
+                      fontFamily: T.fontBody, fontSize: 10,
+                      color: 'rgba(13,27,62,0.28)', letterSpacing: '0.1em',
+                    }}>
+                      {current + 1} / {ESTRUTURA.length}
+                    </span>
+                  </div>
+
+                  {/* Linha dourada */}
+                  <div style={{
+                    width: 28, height: 2, borderRadius: 2, marginBottom: 16,
+                    background: `linear-gradient(90deg,${T.gold},${T.goldLight})`,
+                  }} />
+
+                  {/* Título */}
+                  <h4 style={{
+                    fontFamily: T.fontDisplay,
+                    fontSize: 'clamp(15px,1.8vw,19px)',
+                    fontWeight: 700, lineHeight: 1.3,
+                    color: T.navy, margin: '0 0 12px',
+                  }}>
+                    {ESTRUTURA[current].title}
+                  </h4>
+
+                  {/* Descrição */}
+                  <p style={{
+                    fontFamily: T.fontBody,
+                    fontSize: 'clamp(12px,1.1vw,13px)',
+                    fontWeight: 300, lineHeight: 1.8,
+                    color: 'rgba(13,27,62,0.52)', margin: 0,
+                  }}>
+                    {ESTRUTURA[current].desc}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <NavBtn onClick={next} disabled={current === ESTRUTURA.length - 1} dir="right" />
+          </div>
+
+          {/* Dots abaixo */}
+          <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 18, flexWrap: 'wrap' }}>
+            {ESTRUTURA.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => go(i)}
+                style={{
+                  width: i === current ? 20 : 6, height: 6,
+                  borderRadius: 3, border: 'none', padding: 0, cursor: 'pointer',
+                  background: i === current ? T.navy : 'rgba(13,27,62,0.18)',
+                  transition: 'width 0.3s ease, background 0.3s ease',
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Instagram */}
+        <div style={{ position: 'sticky', top: 100 }}>
           <InstagramEmbed url="https://www.instagram.com/p/DVytQ-rADvO/" />
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
 
-      {/* Responsive */}
       <style>{`
-        @media (max-width: 640px) {
-          .estrutura-cards {
+        @media (max-width: 760px) {
+          .estrutura-outer {
             grid-template-columns: 1fr !important;
           }
         }
@@ -174,99 +281,24 @@ export default function Estrutura() {
   )
 }
 
-/* ── Card ───────────────────────────────────────────── */
-function EstruturCard({ item, icon }) {
-  const [hov, setHov] = useState(false)
-
+function NavBtn({ onClick, disabled, dir }) {
   return (
-    <motion.div
-      variants={fadeUp}
-      onHoverStart={() => setHov(true)}
-      onHoverEnd={() => setHov(false)}
+    <motion.button
+      onClick={onClick}
+      disabled={disabled}
+      whileHover={!disabled ? { scale: 1.08, borderColor: T.gold } : {}}
+      whileTap={!disabled ? { scale: 0.95 } : {}}
       style={{
-        padding: '28px 22px',
-        borderRadius: 20,
-        background: hov ? T.navy : '#ffffff',
-        boxShadow: hov
-          ? '0 24px 56px rgba(13,27,62,0.22)'
-          : '0 4px 28px rgba(13,27,62,0.07)',
-        border: `1px solid ${hov ? 'rgba(201,168,76,0.25)' : 'rgba(13,27,62,0.06)'}`,
-        transition: 'background 0.38s, box-shadow 0.38s, border-color 0.38s',
-        position: 'relative', overflow: 'hidden',
-        cursor: 'default',
-        textAlign: 'center',
-        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        width: 40, height: 40, borderRadius: '50%',
+        border: `1.5px solid ${disabled ? 'rgba(13,27,62,0.12)' : 'rgba(13,27,62,0.25)'}`,
+        background: 'transparent',
+        color: disabled ? 'rgba(13,27,62,0.2)' : T.navy,
+        cursor: disabled ? 'default' : 'pointer',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: 15, transition: 'border-color 0.2s',
       }}
     >
-      {/* Número */}
-      <div style={{
-        fontFamily: T.fontDisplay, fontSize: 10, fontWeight: 700,
-        letterSpacing: '0.14em',
-        color: hov ? 'rgba(201,168,76,0.4)' : 'rgba(13,27,62,0.15)',
-        marginBottom: 18, transition: 'color 0.38s',
-      }}>
-        {item.num}
-      </div>
-
-      {/* Ícone */}
-      <div style={{
-        color: hov ? T.gold : T.navy,
-        marginBottom: 14,
-        transition: 'color 0.38s, transform 0.38s',
-        transform: hov ? 'scale(1.1)' : 'scale(1)',
-        display: 'inline-block',
-      }}>
-        {icon}
-      </div>
-
-      {/* Linha dourada */}
-      <div style={{
-        width: hov ? 36 : 24, height: 2,
-        background: `linear-gradient(90deg, ${T.gold}, ${T.goldLight})`,
-        borderRadius: 2, marginBottom: 14,
-        transition: 'width 0.38s',
-        flexShrink: 0,
-      }} />
-
-      {/* Título */}
-      <h4 style={{
-        fontFamily: T.fontDisplay,
-        fontSize: 15, fontWeight: 700,
-        color: hov ? '#ffffff' : T.navy,
-        marginBottom: 8, lineHeight: 1.3,
-        transition: 'color 0.38s', margin: '0 0 8px',
-      }}>
-        {item.title}
-      </h4>
-
-      {/* Descrição */}
-      <p style={{
-        fontSize: 12, fontWeight: 300, lineHeight: 1.8,
-        color: hov ? 'rgba(255,255,255,0.6)' : '#888',
-        margin: 0, transition: 'color 0.38s',
-      }}>
-        {item.desc}
-      </p>
-
-      {/* Círculo decorativo */}
-      <div style={{
-        position: 'absolute', bottom: -20, right: -20,
-        width: 72, height: 72, borderRadius: '50%',
-        background: hov ? 'rgba(201,168,76,0.07)' : 'rgba(13,27,62,0.03)',
-        transition: 'background 0.38s',
-        pointerEvents: 'none',
-      }} />
-
-      {/* Linha inferior dourada no hover */}
-      <motion.div
-        style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
-          background: `linear-gradient(90deg, ${T.gold}, ${T.goldLight})`,
-          transformOrigin: 'left',
-        }}
-        animate={{ scaleX: hov ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
-      />
-    </motion.div>
+      {dir === 'left' ? '←' : '→'}
+    </motion.button>
   )
 }

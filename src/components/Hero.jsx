@@ -5,8 +5,7 @@ import HeroCanvas from './HeroCanvas'
 import MuranoLogo from './Logo'
 
 export default function Hero({ scrollTo }) {
-  const goContact = () => scrollTo(5)
-  const bars = [0.45, 0.65, 0.52, 0.85, 0.7, 0.92, 1, 0.78, 0.88, 0.6]
+  const goContact = () => scrollTo(6)
 
   return (
     <section className="hero-section" style={{
@@ -14,7 +13,7 @@ export default function Hero({ scrollTo }) {
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
-      background: '#fafbfd',
+      background: '#eef2fa',
       boxSizing: 'border-box',
       overflow: 'hidden',
     }}>
@@ -45,26 +44,16 @@ export default function Hero({ scrollTo }) {
             <img src={`${import.meta.env.BASE_URL}favicon.ico`} alt="Murano Eventos" style={{ height: 64, width: 'auto', display: 'block' }} />
           </motion.div>
 
-          <motion.div variants={fadeUp} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ display: 'inline-block', width: 32, height: 2, background: T.gold, flexShrink: 0 }} />
-            <span style={{
-              fontFamily: T.fontBody, fontSize: 11, fontWeight: 600,
-              letterSpacing: '0.28em', textTransform: 'uppercase', color: T.gold,
-            }}>
-              Há mais de 10 anos criando memórias
-            </span>
-          </motion.div>
-
           <motion.h1 variants={fadeUp} style={{
             fontFamily: T.fontDisplay,
-            fontSize: 'clamp(40px, 5.6vw, 80px)',
+            fontSize: 'clamp(28px, 4vw, 58px)',
             fontWeight: 800, lineHeight: 1.06,
             color: T.navy, margin: 0, letterSpacing: '-0.02em',
           }}>
-            Transformamos<br />
-            seu evento em<br />
+            Transformamos o evento da sua marca<br />
+            em uma experiência memorável,<br />
             <span style={{ fontWeight: 300, color: T.navyLight, fontStyle: 'italic', letterSpacing: '0.01em' }}>
-              algo eterno.
+              capaz de conectar pessoas e eternizar sua história.
             </span>
           </motion.h1>
 
@@ -74,9 +63,7 @@ export default function Hero({ scrollTo }) {
             fontWeight: 400, lineHeight: 1.8,
             color: 'rgba(13,27,62,0.58)', margin: 0, maxWidth: 460,
           }}>
-            Da decoração exclusiva ao buffet de alto padrão, a Murano cuida de
-            cada detalhe para que você viva momentos inesquecíveis com
-            estrutura completa, equipe especializada e atenção total à sua história.
+            Cuidamos de cada detalhe do seu evento com excelência e planejamento completo. Unimos buffet, decoração e espaço, conduzidos por equipes especializadas que cuidam de cada detalhe.
           </motion.p>
 
           <motion.div variants={fadeUp} style={{
@@ -108,68 +95,45 @@ export default function Hero({ scrollTo }) {
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </motion.div>
 
-          {/* 10+ Anos */}
+          {/* Card — Nossa essência */}
           <motion.div className="hero-card" variants={fadeUp} style={{
             borderRadius: 18, background: '#ffffff',
             boxShadow: '0 8px 32px rgba(13,27,62,0.08)',
             border: `1px solid rgba(201,168,76,0.18)`,
             display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center', gap: 6, padding: 20,
+            alignItems: 'center', justifyContent: 'center', gap: 10, padding: 20,
           }}>
-            <span style={{
-              fontFamily: T.fontDisplay, fontWeight: 800,
-              fontSize: 'clamp(36px, 4vw, 54px)',
-              color: T.navy, lineHeight: 1, letterSpacing: '-0.03em',
-            }}>10+</span>
-            <span style={{
-              fontFamily: T.fontBody, fontSize: 10, fontWeight: 600,
-              letterSpacing: '0.18em', textTransform: 'uppercase',
-              color: 'rgba(13,27,62,0.45)', textAlign: 'center', lineHeight: 1.5,
-            }}>Anos no<br />Mercado</span>
-            <svg width="32" height="32" viewBox="0 0 36 36" fill="none" style={{ marginTop: 8 }}>
-              <circle cx="18" cy="18" r="14" stroke={T.gold} strokeWidth="1.4" opacity="0.5" />
-              <ellipse cx="18" cy="18" rx="7" ry="14" stroke={T.gold} strokeWidth="1.4" opacity="0.35" />
-              <line x1="4" y1="18" x2="32" y2="18" stroke={T.gold} strokeWidth="1.2" opacity="0.3" />
-              <line x1="7" y1="11" x2="29" y2="11" stroke={T.gold} strokeWidth="1" opacity="0.2" />
-              <line x1="7" y1="25" x2="29" y2="25" stroke={T.gold} strokeWidth="1" opacity="0.2" />
-            </svg>
+            <div style={{ width: 28, height: 2, borderRadius: 2, background: `linear-gradient(90deg,${T.gold},${T.goldLight})` }} />
+
+            <p style={{
+              fontFamily: T.fontDisplay, fontSize: 13, fontWeight: 400,
+              fontStyle: 'italic', lineHeight: 1.65,
+              color: T.navy, textAlign: 'center', margin: 0,
+            }}>
+              Assinamos eventos para{' '}
+              <span style={{ fontWeight: 700, fontStyle: 'normal' }}>empresas e marcas</span>
+              {' '}de referência
+            </p>
           </motion.div>
 
-          {/* 500+ Eventos */}
+          {/* Card — Nossa visão */}
           <motion.div className="hero-card" variants={fadeUp} style={{
             borderRadius: 18, background: T.navy, overflow: 'hidden',
             boxShadow: '0 12px 40px rgba(13,27,62,0.22)',
             display: 'flex', flexDirection: 'column',
-            justifyContent: 'space-between', padding: '22px 24px',
+            justifyContent: 'center', gap: 10, padding: '22px 24px',
           }}>
-            <span style={{
-              fontFamily: T.fontBody, fontSize: 9, fontWeight: 600,
-              letterSpacing: '0.22em', textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.45)',
-            }}>Eventos Realizados</span>
-            <div>
-              <span style={{
-                fontFamily: T.fontDisplay, fontWeight: 800,
-                fontSize: 'clamp(30px, 3.5vw, 48px)',
-                color: '#fff', lineHeight: 1, letterSpacing: '-0.02em',
-              }}>500+</span>
-              <div style={{ marginTop: 12, display: 'flex', alignItems: 'flex-end', gap: 3, height: 32 }}>
-                {bars.map((h, i) => (
-                  <motion.div key={i}
-                    initial={{ scaleY: 0 }}
-                    animate={{ scaleY: 1 }}
-                    transition={{ delay: 0.6 + i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    style={{
-                      flex: 1, height: `${h * 100}%`, borderRadius: 3,
-                      background: i === 6
-                        ? `linear-gradient(to top,${T.gold},${T.goldLight})`
-                        : `rgba(255,255,255,${0.14 + h * 0.2})`,
-                      transformOrigin: 'bottom',
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+
+            <p style={{
+              fontFamily: T.fontBody, fontSize: 12, fontWeight: 400,
+              lineHeight: 1.8, color: 'rgba(255,255,255,0.72)', margin: 0,
+            }}>
+              Grandes empresas não promovem apenas eventos —{' '}
+              <span style={{ color: T.goldLight, fontWeight: 600 }}>criam conexões</span>,{' '}
+              <span style={{ color: T.goldLight, fontWeight: 600 }}>fortalecem culturas</span>{' '}
+              e{' '}
+              <span style={{ color: T.goldLight, fontWeight: 600 }}>transformam encontros em resultados</span>.
+            </p>
           </motion.div>
 
           {/* murano3.jpeg */}
@@ -207,7 +171,7 @@ export default function Hero({ scrollTo }) {
             </motion.button>
 
             <motion.button
-              onClick={() => scrollTo(3)}
+              onClick={() => scrollTo(4)}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 10,
                 background: 'transparent', color: T.navy,
@@ -315,6 +279,21 @@ export default function Hero({ scrollTo }) {
           }
 
           .hero-scroll-hint { display: none !important; }
+
+          /* cards de texto: fonte menor + overflow contido no mobile */
+          .hero-card p {
+            font-size: 10px !important;
+            line-height: 1.55 !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 4 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+          }
+          /* esconde a linha decorativa dourada no card branco no mobile */
+          .hero-card > div[style*="height: 2px"],
+          .hero-card > div[style*="height:2px"] {
+            display: none !important;
+          }
         }
 
         /* ── iPhone SE e telas muito pequenas (≤ 400px) ──── */
@@ -325,7 +304,7 @@ export default function Hero({ scrollTo }) {
           }
           .hero-text { gap: 10px !important; }
           .hero-section .hero-text img { height: 40px !important; }
-          .hero-section h1 { font-size: 32px !important; }
+          .hero-section h1 { font-size: 26px !important; }
           .hero-section .hero-text p {
             font-size: 13px !important;
           }

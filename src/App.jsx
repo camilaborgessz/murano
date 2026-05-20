@@ -14,6 +14,7 @@ import Contato from './components/Contato'
 import Footer from './components/Footer'
 import SectionIndicator from './components/SectionIndicator'
 import GlobalStyles from './components/GlobalStyles'
+import MuranoBand from './components/MuranoBand'
 import { T } from './styles/tokens'
 
 export default function App() {
@@ -56,12 +57,13 @@ export default function App() {
       <Nav scrolled={scrolled} scrollTo={scrollTo} />
 
       <div ref={setRef(0)}><Hero scrollTo={scrollTo} /></div>
-      <div ref={setRef(1)}><About scrollTo={scrollTo} /></div>
-      <div ref={setRef(2)}><Diferenciais /></div>
-      <div ref={setRef(3)}><Portfolio /></div>
-      <div ref={setRef(4)}><Estrutura /></div>
-      <Depoimentos />
-      <div ref={setRef(5)}><Contato /></div>
+      <div ref={setRef(1)}><Depoimentos /></div>
+      <div ref={setRef(2)}><About scrollTo={scrollTo} /></div>
+      <div ref={setRef(3)}><Diferenciais /></div>
+      <div ref={setRef(4)}><Portfolio /></div>
+      <div ref={setRef(5)}><Estrutura /></div>
+      <MuranoBand />
+      <div ref={setRef(6)}><Contato /></div>
       <Footer scrollTo={scrollTo} />
     </>
   )

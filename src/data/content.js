@@ -1,4 +1,4 @@
-export const SECTIONS = ["Início", "Sobre", "Diferenciais", "Eventos", "Espaço", "Contato"]
+export const SECTIONS = ["Início", "Depoimentos", "Sobre", "Diferenciais", "Eventos", "Espaço", "Contato"]
 
 export const STATS = [
   { num: "500+", label: "Eventos Realizados" },
@@ -8,12 +8,14 @@ export const STATS = [
 ]
 
 export const DIFERENCIAIS = [
-  { num: "01", title: "Atendimento Personalizado", desc: "Cada evento é único. Nossa equipe dedica atenção exclusiva, criando projetos sob medida que refletem sua visão e superam expectativas." },
-  { num: "02", title: "Estrutura Completa",        desc: "Banheiros amplos e impecáveis, cozinha industrial qualificada, salão versátil — tudo em um único espaço de excelência." },
-  { num: "03", title: "Buffet de Alto Padrão",    desc: "Gastronomia refinada com apresentação impecável: ilhas de frios, mini porções, sobremesas e louças selecionadas." },
-  { num: "04", title: "Decoração Exclusiva",      desc: "Projetos decorativos pensados do zero, com atenção meticulosa a cada detalhe e ambientações únicas." },
-  { num: "05", title: "Equipe Especializada",     desc: "Profissionais experientes e apaixonados por eventos. Do planejamento à execução, excelência em cada etapa." },
-  { num: "06", title: "Locação de Materiais",    desc: "Amplo catálogo de móveis, iluminação e objetos decorativos para compor o cenário perfeito." },
+  { num: "01", title: "Maior salão climatizado de porto velho"},
+  { num: "02", title: "Área verde integrada ao salão"},
+  { num: "03", title: "Decorações exclusivas"},
+  { num: "04", title: "Gerador de energia" },
+  { num: "05", title: "Estacionamento privado"},
+  { num: "06", title: "Localização estratégica no centro da cidade"},
+  { num: "06", title: "Camarim mobiliado"},
+  { num: "06", title: "Equipe especializada e preparada"},
 ]
 
 export const TABS = ["Casamentos", "Formaturas", "Corporativo", "15 Anos", "Aniversários", "Personalizado"]
@@ -36,10 +38,17 @@ export const DEPOIMENTOS = [
 ]
 
 export const ESTRUTURA = [
-  { num: "01", title: "Banheiros Amplos",   desc: "Múltiplos banheiros espaçosos, mantidos com padrão impecável de limpeza durante todo o evento." },
-  { num: "02", title: "Cozinha Industrial", desc: "Estrutura profissional para atender buffets completos com agilidade, qualidade e excelência gastronômica." },
-  { num: "03", title: "Salão Versátil",     desc: "Adaptável para banquetes, coquetéis, auditórios e celebrações — qualquer formato, qualquer porte." },
-  { num: "04", title: "Área Externa",       desc: "Espaços ao ar livre sofisticados, integrados ao conceito interno para eventos ainda mais marcantes." },
+  { num: "01", title: "O Maior Salão Climatizado de Porto Velho", desc: "Amplitude, conforto e sofisticação para receber eventos de diferentes formatos com excelência." },
+  { num: "02", title: "Área Verde Integrada ao Espaço",           desc: "Mais do que um cenário bonito, nossa área verde foi pensada para proporcionar bem-estar e leveza durante todo o evento. Um ambiente acolhedor, cercado pela natureza, ideal para que os convidados relaxem e aproveitem cada momento." },
+  { num: "03", title: "Atendimento Personalizado",                desc: "Cada evento é conduzido de forma exclusiva, com atenção aos detalhes e foco total nas necessidades do cliente." },
+  { num: "04", title: "Decorações Exclusivas",                    desc: "Projetos autorais desenvolvidos para criar ambientes impactantes e alinhados à identidade de cada evento." },
+  { num: "05", title: "Buffet Personalizado",                     desc: "Uma experiência gastronômica completa, preparada para surpreender e encantar seus convidados." },
+  { num: "06", title: "Limpeza dos Banheiros",                    desc: "Equipe dedicada à higienização periódica dos 15 banheiros da casa durante todo o evento, garantindo conforto e bem-estar." },
+  { num: "07", title: "Gerador de Energia",                       desc: "Mais segurança e tranquilidade para que seu evento aconteça sem interrupções." },
+  { num: "08", title: "Estacionamento Privado",                   desc: "Comodidade, praticidade e segurança para clientes e convidados." },
+  { num: "09", title: "Localização Estratégica",                  desc: "No centro da cidade, com fácil acesso e excelente mobilidade para todos os participantes." },
+  { num: "10", title: "Camarim Mobiliado",                        desc: "Um espaço exclusivo e confortável para apoio de equipe, reuniões e momentos de preparação nos bastidores do evento." },
+  { num: "11", title: "Equipe Especializada e Preparada",         desc: "Por trás de cada evento impecável, existe uma equipe treinada, experiente e capacitada para entender e executar cada etapa." },
 ]
 
 export const GLASS_CARDS = [

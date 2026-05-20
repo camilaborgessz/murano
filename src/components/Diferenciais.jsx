@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { T } from '../styles/tokens'
 import { useReveal } from '../hooks/useReveal'
 import { DIFERENCIAIS } from '../data/content'
@@ -16,11 +15,8 @@ const fadeIn = {
 
 export default function Diferenciais() {
   const { ref, inView } = useReveal(0.1)
-  const [active, setActive] = useState(null)
   const imgRef = useReveal(0.15)
   const titleRef = useReveal(0.2)
-
-  const activeData = DIFERENCIAIS.find(d => d.num === active)
 
   return (
     <section style={{
@@ -43,7 +39,6 @@ export default function Diferenciais() {
           transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{ textAlign: 'center', marginBottom: 40 }}
         >
-          {/* eyebrow */}
           <p style={{
             fontFamily: T.fontBody, fontSize: 11, fontWeight: 600,
             letterSpacing: '0.28em', textTransform: 'uppercase',
@@ -52,23 +47,18 @@ export default function Diferenciais() {
             Por que nos escolher
           </p>
 
-          {/* headline dois tons */}
           <h2 style={{
             fontFamily: T.fontDisplay,
             fontSize: 'clamp(38px, 5.8vw, 74px)',
             lineHeight: 1.06, margin: 0,
             letterSpacing: '-0.02em',
           }}>
-            <span style={{
-              fontStyle: 'italic', fontWeight: 300,
-              color: T.navyLight,
-            }}>
+            <span style={{ fontStyle: 'italic', fontWeight: 300, color: T.navyLight }}>
               Nossos{' '}
             </span>
             <span style={{ fontWeight: 800, color: T.navy }}>Diferenciais</span>
           </h2>
 
-          {/* linha decorativa */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             gap: 12, marginTop: 20,
@@ -86,7 +76,7 @@ export default function Diferenciais() {
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           style={{
-            maxWidth: 940, margin: '0 auto 36px',
+            maxWidth: 940, margin: '0 auto 52px',
             display: 'flex', flexWrap: 'wrap',
             gap: 12, justifyContent: 'center',
             alignItems: 'center',
@@ -94,54 +84,10 @@ export default function Diferenciais() {
         >
           {DIFERENCIAIS.map(d => (
             <motion.div key={d.num} variants={fadeIn} style={{ display: 'inline-flex' }}>
-              <Badge
-                d={d}
-                isActive={active === d.num}
-                onClick={() => setActive(active === d.num ? null : d.num)}
-              />
+              <Badge d={d} />
             </motion.div>
           ))}
         </motion.div>
-
-        {/* ── Painel de detalhe ── */}
-        <AnimatePresence mode="wait">
-          {activeData && (
-            <motion.div
-              key={activeData.num}
-              initial={{ opacity: 0, scaleY: 0.85, height: 0 }}
-              animate={{ opacity: 1, scaleY: 1, height: 'auto' }}
-              exit={{ opacity: 0, scaleY: 0.85, height: 0 }}
-              transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
-              style={{ overflow: 'hidden', maxWidth: 720, margin: '0 auto 52px', transformOrigin: 'top' }}
-            >
-              <div style={{
-                background: T.navy, borderRadius: 20, marginTop: 4,
-                padding: 'clamp(20px,4vw,36px) clamp(24px,5vw,48px)',
-                display: 'flex', alignItems: 'flex-start', gap: 18,
-                boxShadow: '0 20px 60px rgba(13,27,62,0.18)',
-              }}>
-                <span style={{ fontSize: 30, flexShrink: 0, lineHeight: 1, marginTop: 2 }}>
-                  {activeData.icon}
-                </span>
-                <div>
-                  <p style={{
-                    fontFamily: T.fontDisplay, fontSize: 12, fontWeight: 600,
-                    color: T.gold, letterSpacing: '0.14em', textTransform: 'uppercase',
-                    margin: '0 0 8px',
-                  }}>
-                    {activeData.title}
-                  </p>
-                  <p style={{
-                    fontFamily: T.fontBody, fontSize: 15, fontWeight: 300,
-                    color: 'rgba(255,255,255,0.75)', lineHeight: 1.85, margin: 0,
-                  }}>
-                    {activeData.desc}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* ── Imagem ── */}
         <motion.div
@@ -176,17 +122,45 @@ export default function Diferenciais() {
               animate={imgRef.inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: 0.55, duration: 0.7 }}
             >
+              {/* linha decorativa dourada */}
+              <div style={{
+                width: 36, height: 2, borderRadius: 2, marginBottom: 14,
+                background: `linear-gradient(90deg, ${T.gold}, ${T.goldLight})`,
+              }} />
+
               <p style={{
-                fontFamily: T.fontDisplay, fontSize: 'clamp(42px,7vw,72px)',
-                fontWeight: 700, color: T.gold, lineHeight: 1, margin: '0 0 4px',
+                fontFamily: T.fontDisplay,
+                fontSize: 'clamp(22px, 3.2vw, 42px)',
+                fontWeight: 300,
+                fontStyle: 'italic',
+                lineHeight: 1.2,
+                color: 'rgba(255,255,255,0.92)',
+                margin: '0 0 4px',
+                letterSpacing: '-0.01em',
               }}>
-                500<span style={{ fontSize: '0.55em', fontWeight: 400 }}>+</span>
+                Eventos que traduzem a{' '}
+                <span style={{
+                  fontWeight: 700,
+                  fontStyle: 'normal',
+                  color: T.goldLight,
+                }}>essência</span>
+                {' '}e o{' '}
+                <span style={{
+                  fontWeight: 700,
+                  fontStyle: 'normal',
+                  color: T.goldLight,
+                }}>prestígio</span>
               </p>
               <p style={{
-                fontFamily: T.fontBody, fontSize: 'clamp(13px,2vw,16px)', fontWeight: 300,
-                color: 'rgba(255,255,255,0.85)', letterSpacing: '0.04em', margin: 0,
+                fontFamily: T.fontDisplay,
+                fontSize: 'clamp(22px, 3.2vw, 42px)',
+                fontWeight: 800,
+                lineHeight: 1.2,
+                color: '#fff',
+                margin: 0,
+                letterSpacing: '-0.02em',
               }}>
-                eventos realizados com excelência
+                da sua marca.
               </p>
             </motion.div>
           </div>
@@ -237,10 +211,7 @@ function MuranoPattern() {
               whiteSpace: 'nowrap',
               display: 'block',
               paddingRight: 48,
-              /* offset alternado para efeito de tijolo */
-              marginTop: Math.floor(i / cols) % 2 === 0
-                ? (i % cols) * 0
-                : 0,
+              marginTop: Math.floor(i / cols) % 2 === 0 ? (i % cols) * 0 : 0,
             }}
           >
             {i % 3 === 1 ? '✦' : 'MURANO'}
@@ -252,13 +223,11 @@ function MuranoPattern() {
 }
 
 /* ─────────────────────────────────────────────────
-   Badge — sem variants (entrance fica no wrapper)
+   Badge — decorativo, sem clique
 ───────────────────────────────────────────────── */
-function Badge({ d, isActive, onClick }) {
+function Badge({ d }) {
   return (
-    <motion.button
-      onClick={onClick}
-      whileTap={{ scale: 0.95 }}
+    <motion.div
       whileHover={{
         backgroundColor: T.navy,
         borderColor: T.gold,
@@ -266,45 +235,23 @@ function Badge({ d, isActive, onClick }) {
         y: -4,
         boxShadow: '0 10px 32px rgba(13,27,62,0.16)',
       }}
-      animate={{
-        backgroundColor: isActive ? T.navy : 'rgba(0,0,0,0)',
-        borderColor: isActive ? T.gold : 'rgba(13,27,62,0.22)',
-        color: isActive ? T.gold : T.navy,
-        boxShadow: isActive ? '0 10px 32px rgba(13,27,62,0.16)' : '0 0px 0px rgba(0,0,0,0)',
-      }}
       transition={{ duration: 0.22, ease: 'easeOut' }}
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 9,
         padding: 'clamp(10px,1.4vw,14px) clamp(18px,2.8vw,28px)',
         borderRadius: 100,
         border: '1.5px solid rgba(13,27,62,0.22)',
-        cursor: 'pointer',
         fontFamily: T.fontDisplay,
         fontSize: 'clamp(12px,1.6vw,14px)',
         fontWeight: 500,
         letterSpacing: '0.01em',
-        outline: 'none',
         lineHeight: 1,
+        color: T.navy,
+        backgroundColor: 'rgba(0,0,0,0)',
       }}
     >
-      <motion.span
-        animate={{ scale: isActive ? 1.25 : 1 }}
-        transition={{ duration: 0.3 }}
-        style={{ fontSize: 16, lineHeight: 1, flexShrink: 0 }}
-      >
-        {d.icon}
-      </motion.span>
+      <span style={{ fontSize: 16, lineHeight: 1, flexShrink: 0 }}>{d.icon}</span>
       <span style={{ whiteSpace: 'nowrap' }}>{d.title}</span>
-      {isActive && (
-        <motion.span
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          style={{
-            width: 5, height: 5, borderRadius: '50%',
-            background: T.gold, display: 'inline-block', flexShrink: 0,
-          }}
-        />
-      )}
-    </motion.button>
+    </motion.div>
   )
 }

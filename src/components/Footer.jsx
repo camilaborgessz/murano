@@ -3,11 +3,12 @@ import { T } from '../styles/tokens'
 
 const NAV_LINKS = [
   { label: 'Início',       idx: 0 },
-  { label: 'Sobre',        idx: 1 },
-  { label: 'Diferenciais', idx: 2 },
-  { label: 'Eventos',      idx: 3 },
-  { label: 'Espaço',       idx: 4 },
-  { label: 'Contato',      idx: 5 },
+  { label: 'Depoimentos',  idx: 1 },
+  { label: 'Sobre',        idx: 2 },
+  { label: 'Diferenciais', idx: 3 },
+  { label: 'Eventos',      idx: 4 },
+  { label: 'Espaço',       idx: 5 },
+  { label: 'Contato',      idx: 6 },
 ]
 
 const WPP = 'https://wa.me/5569992242374'
@@ -137,21 +138,14 @@ export default function Footer({ scrollTo }) {
       <div style={{
         borderTop: '1px solid rgba(255,255,255,0.06)',
         paddingTop: 24,
-        display: 'flex', flexWrap: 'wrap',
-        justifyContent: 'space-between', alignItems: 'center',
-        gap: 12,
+        textAlign: 'center',
       }}>
         <p style={{
           fontFamily: T.fontBody, fontSize: 11, fontWeight: 300,
-          color: 'rgba(255,255,255,0.2)', letterSpacing: '0.06em', margin: 0,
+          color: 'rgba(255,255,255,0.25)', letterSpacing: '0.1em',
+          textTransform: 'uppercase', margin: 0,
         }}>
-          © {new Date().getFullYear()} Murano Eventos — Todos os direitos reservados
-        </p>
-        <p style={{
-          fontFamily: T.fontBody, fontSize: 11, fontWeight: 300,
-          color: 'rgba(255,255,255,0.15)', letterSpacing: '0.08em', margin: 0,
-        }}>
-          Sofisticação · Excelência · Experiência
+          Murano Eventos · Todos os direitos reservados · © {new Date().getFullYear()}
         </p>
       </div>
 

@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { T } from '../styles/tokens'
 import { useReveal } from '../hooks/useReveal'
 import { SectionHeader } from './shared'
 
-/* Cada imagem tem um aspect-ratio para variar o ritmo visual */
 const base = import.meta.env.BASE_URL
 const IMAGES = [
   { src: `${base}murano1.jpeg`, ratio: '4/3'  },
@@ -16,7 +15,6 @@ const IMAGES = [
   { src: `${base}murano7.jpeg`, ratio: '16/9' },
 ]
 
-/* Linhas com ordem diferente para não ficarem idênticas */
 const ROW1 = IMAGES
 const ROW2 = [...IMAGES].reverse()
 
@@ -26,7 +24,6 @@ export default function Portfolio() {
   return (
     <section style={{ background: T.navy, overflow: 'hidden', paddingBottom: 80 }}>
 
-      {/* Título */}
       <div style={{ padding: 'clamp(60px,8vw,80px) clamp(24px,5vw,80px) 0' }}>
         <div style={{ marginBottom: -40 }}>
           <SectionHeader
@@ -38,7 +35,6 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Link Instagram */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -63,17 +59,15 @@ export default function Portfolio() {
             transition: 'border-color 0.25s, color 0.25s',
           }}
         >
-          {/* ícone Instagram SVG */}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
             <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
           </svg>
-          Ver mais no Instagram
+          Ver mais
         </motion.a>
       </motion.div>
 
-      {/* Faixas */}
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 40 }}
@@ -99,23 +93,88 @@ export default function Portfolio() {
   )
 }
 
-/* ── Faixa de marquee ─────────────────────────────────── */
+/* ── Faixa de marquee com drag ───────────────────────── */
 function MarqueeRow({ images, direction, speed, height }) {
-  const [paused, setPaused] = useState(false)
-  /* duplica para o loop sem costura */
+  const trackRef = useRef(null)
+  const drag = useRef({ active: false, startX: 0, startTx: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+
   const doubled = [...images, ...images]
   const anim = direction === 'left' ? 'mqLeft' : 'mqRight'
 
-  return (
-    <div style={{ position: 'relative', overflow: 'hidden' }}>
+  const getTx = () => {
+    const track = trackRef.current
+    if (!track) return 0
+    const matrix = new DOMMatrix(window.getComputedStyle(track).transform)
+    return matrix.m41
+  }
 
-      {/* Fade lateral esquerdo */}
+  const onPointerDown = (e) => {
+    const track = trackRef.current
+    if (!track) return
+    e.preventDefault()
+    const tx = getTx()
+    drag.current = { active: true, startX: e.clientX, startTx: tx }
+    track.style.animation = 'none'
+    track.style.transform = `translateX(${tx}px)`
+    track.setPointerCapture(e.pointerId)
+    setIsDragging(true)
+  }
+
+  const onPointerMove = (e) => {
+    if (!drag.current.active) return
+    const track = trackRef.current
+    if (!track) return
+    const newX = drag.current.startTx + (e.clientX - drag.current.startX)
+    track.style.transform = `translateX(${newX}px)`
+  }
+
+  const onPointerUp = (e) => {
+    if (!drag.current.active) return
+    drag.current.active = false
+    setIsDragging(false)
+    const track = trackRef.current
+    if (!track) return
+
+    const endX = drag.current.startTx + (e.clientX - drag.current.startX)
+    const halfWidth = track.scrollWidth / 2
+
+    // Calcula animation-delay para retomar do ponto onde o usuário soltou
+    let delay
+    if (direction === 'left') {
+      // mqLeft: translateX(0) → translateX(-halfWidth)
+      let pos = endX % halfWidth
+      if (pos > 0) pos -= halfWidth   // normaliza para [-halfWidth, 0]
+      delay = (pos / halfWidth) * speed // delay negativo = começa desse ponto
+    } else {
+      // mqRight: translateX(-halfWidth) → translateX(0)
+      let pos = endX % halfWidth
+      if (pos > 0) pos -= halfWidth
+      const frac = 1 - Math.abs(pos) / halfWidth
+      delay = -frac * speed
+    }
+
+    track.style.transform = ''
+    track.style.animation = `${anim} ${speed}s linear infinite`
+    track.style.animationDelay = `${delay}s`
+  }
+
+  return (
+    <div
+      style={{
+        position: 'relative',
+        overflow: 'hidden',
+        cursor: isDragging ? 'grabbing' : 'grab',
+        userSelect: 'none',
+      }}
+    >
+      {/* Fade esquerdo */}
       <div style={{
         position: 'absolute', top: 0, left: 0, bottom: 0, width: 120, zIndex: 2,
         background: `linear-gradient(to right, ${T.navy}, transparent)`,
         pointerEvents: 'none',
       }} />
-      {/* Fade lateral direito */}
+      {/* Fade direito */}
       <div style={{
         position: 'absolute', top: 0, right: 0, bottom: 0, width: 120, zIndex: 2,
         background: `linear-gradient(to left, ${T.navy}, transparent)`,
@@ -124,18 +183,21 @@ function MarqueeRow({ images, direction, speed, height }) {
 
       {/* Track */}
       <div
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
+        ref={trackRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
         style={{
           display: 'flex',
           gap: 14,
           width: 'max-content',
           animation: `${anim} ${speed}s linear infinite`,
-          animationPlayState: paused ? 'paused' : 'running',
+          touchAction: 'pan-y',
         }}
       >
         {doubled.map((img, i) => (
-          <Card key={i} src={img.src} ratio={img.ratio} height={height} />
+          <Card key={i} src={img.src} ratio={img.ratio} height={height} isDragging={isDragging} />
         ))}
       </div>
     </div>
@@ -143,12 +205,12 @@ function MarqueeRow({ images, direction, speed, height }) {
 }
 
 /* ── Card individual ──────────────────────────────────── */
-function Card({ src, ratio, height }) {
+function Card({ src, ratio, height, isDragging }) {
   const [hov, setHov] = useState(false)
 
   return (
     <div
-      onMouseEnter={() => setHov(true)}
+      onMouseEnter={() => !isDragging && setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
         height,
@@ -157,7 +219,6 @@ function Card({ src, ratio, height }) {
         overflow: 'hidden',
         flexShrink: 0,
         position: 'relative',
-        cursor: 'pointer',
         transform: hov ? 'scale(1.04)' : 'scale(1)',
         transition: 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)',
         boxShadow: hov
@@ -168,15 +229,16 @@ function Card({ src, ratio, height }) {
       <img
         src={src}
         alt="Evento Murano"
+        draggable={false}
         style={{
           width: '100%', height: '100%',
           objectFit: 'cover', display: 'block',
           transform: hov ? 'scale(1.06)' : 'scale(1)',
           transition: 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)',
+          pointerEvents: 'none',
         }}
       />
 
-      {/* Overlay no hover */}
       <div style={{
         position: 'absolute', inset: 0,
         background: hov
@@ -200,7 +262,6 @@ function Card({ src, ratio, height }) {
         )}
       </div>
 
-      {/* Borda dourada no hover */}
       <div style={{
         position: 'absolute', inset: 0,
         borderRadius: 16,
