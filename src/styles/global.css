@@ -34,7 +34,6 @@ body {
   background: var(--cream);
   color: var(--navy);
   overflow-x: hidden;
-  cursor: none;
   max-width: 100%;
 }
 

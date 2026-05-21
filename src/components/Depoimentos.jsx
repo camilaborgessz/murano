@@ -208,16 +208,6 @@ function DepoCard({ d, photoSrc, active, isDragging }) {
             {d.author}
           </div>
 
-          {/* Hint de flip */}
-          <div style={{
-            position: 'absolute', bottom: 14, right: 18,
-            fontFamily: T.fontBody, fontSize: 9, fontWeight: 600,
-            letterSpacing: '0.18em', textTransform: 'uppercase',
-            color: 'rgba(13,27,62,0.3)',
-          }}>
-            ver foto →
-          </div>
-
           <div style={{
             position: 'absolute', bottom: -32, right: -32,
             width: 96, height: 96, borderRadius: '50%',

@@ -2,7 +2,6 @@ import { useRef, useEffect } from 'react'
 import { useScrollState } from './hooks/useScroll'
 import { SECTIONS } from './data/content'
 
-import Cursor from './components/Cursor'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -12,7 +11,6 @@ import Estrutura from './components/Estrutura'
 import Depoimentos from './components/Depoimentos'
 import Contato from './components/Contato'
 import Footer from './components/Footer'
-import SectionIndicator from './components/SectionIndicator'
 import GlobalStyles from './components/GlobalStyles'
 import MuranoBand from './components/MuranoBand'
 import { T } from './styles/tokens'
@@ -42,8 +40,6 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      <Cursor />
-
       {/* Barra de progresso */}
       <div style={{
         position: 'fixed', top: 0, left: 0, height: 2, zIndex: 9999,
@@ -53,7 +49,6 @@ export default function App() {
         transition: 'width 0.1s linear',
       }} />
 
-      <SectionIndicator active={activeSec} scrollTo={scrollTo} />
       <Nav scrolled={scrolled} scrollTo={scrollTo} />
 
       <div ref={setRef(0)}><Hero scrollTo={scrollTo} /></div>

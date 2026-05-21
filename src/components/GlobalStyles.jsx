@@ -7,10 +7,6 @@ export default function GlobalStyles() {
       ::-webkit-scrollbar { display: none; }
       html, body { overflow-x: hidden; max-width: 100%; }
 
-      @media (max-width: 768px) {
-        body { cursor: auto; }
-        #murano-cursor, #murano-cursor-ring { display: none; }
-      }
     `}</style>
   )
 }
