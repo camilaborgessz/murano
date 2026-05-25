@@ -168,7 +168,6 @@ Error generating stack: `+e.message+`
       @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      ::-webkit-scrollbar { display: none; }
       html, body { overflow-x: hidden; max-width: 100%; }
 
     `})}var Od=Array.from({length:12},(e,t)=>t%3==1?`✦`:`MURANO`);function kd(){return(0,B.jsxs)(`div`,{style:{background:X.navy,borderTop:`1px solid rgba(201,168,76,0.14)`,borderBottom:`1px solid rgba(201,168,76,0.14)`,overflow:`hidden`,padding:`14px 0`},children:[(0,B.jsx)(`div`,{style:{display:`flex`,width:`max-content`,animation:`bandScroll 18s linear infinite`,gap:48},children:[...Od,...Od].map((e,t)=>(0,B.jsx)(`span`,{style:{fontFamily:X.fontDisplay,fontSize:13,fontWeight:e===`✦`?400:700,letterSpacing:e===`✦`?0:`0.38em`,textTransform:`uppercase`,color:e===`✦`?X.gold:`rgba(255,255,255,0.18)`,whiteSpace:`nowrap`,userSelect:`none`},children:e},t))}),(0,B.jsx)(`style`,{children:`
@@ -176,24 +175,4 @@ Error generating stack: `+e.message+`
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
-      `})]})}function Ad({active:e,scrollTo:t}){return(0,B.jsxs)(B.Fragment,{children:[(0,B.jsx)(`div`,{className:`section-indicator`,children:S.map((n,r)=>(0,B.jsx)(Y.div,{className:`section-dot`,title:n,onClick:()=>t(r),animate:{background:e===r?X.gold:`rgba(201,168,76,0.25)`,scale:e===r?1.5:1},whileHover:{scale:1.6,background:X.gold},style:{borderRadius:`50%`,border:`1px solid ${X.gold}`,cursor:`pointer`,boxShadow:e===r?`0 0 6px ${X.gold}`:`none`}},n))}),(0,B.jsx)(`style`,{children:`
-        .section-indicator {
-          position: fixed;
-          top: 50%;
-          right: 16px;
-          transform: translateY(-50%);
-          z-index: 900;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        .section-dot {
-          width: 6px;
-          height: 6px;
-        }
-        @media (max-width: 860px) {
-          .section-indicator {
-            display: none;
-          }
-        }
-      `})]})}function jd(){let{scrolled:e,progress:t,activeSec:n,setActiveSec:r}=x(),i=(0,b.useRef)([]),a=e=>t=>{i.current[e]=t},o=e=>{i.current[e]?.scrollIntoView({behavior:`smooth`})};return(0,b.useEffect)(()=>{let e=()=>{i.current.forEach((e,t)=>{if(!e)return;let{top:n,bottom:i}=e.getBoundingClientRect();n<=window.innerHeight*.5&&i>=window.innerHeight*.5&&r(t)})};return window.addEventListener(`scroll`,e,{passive:!0}),()=>window.removeEventListener(`scroll`,e)},[]),(0,B.jsxs)(B.Fragment,{children:[(0,B.jsx)(Dd,{}),(0,B.jsx)(`div`,{style:{position:`fixed`,top:0,left:0,height:2,zIndex:9999,width:`${t}%`,background:`linear-gradient(90deg, ${X.gold}, ${X.goldLight}, ${X.gold})`,boxShadow:`0 0 8px ${X.gold}`,transition:`width 0.1s linear`}}),(0,B.jsx)(Ou,{scrolled:e,scrollTo:o}),(0,B.jsx)(Ad,{active:n,scrollTo:o}),(0,B.jsx)(`div`,{ref:a(0),children:(0,B.jsx)(Lu,{scrollTo:o})}),(0,B.jsx)(`div`,{ref:a(1),children:(0,B.jsx)(hd,{})}),(0,B.jsx)(`div`,{ref:a(2),children:(0,B.jsx)(Xu,{scrollTo:o})}),(0,B.jsx)(`div`,{ref:a(3),children:(0,B.jsx)($u,{})}),(0,B.jsx)(`div`,{ref:a(4),children:(0,B.jsx)(od,{})}),(0,B.jsx)(`div`,{ref:a(5),children:(0,B.jsx)(dd,{})}),(0,B.jsx)(kd,{}),(0,B.jsx)(`div`,{ref:a(6),children:(0,B.jsx)(yd,{})}),(0,B.jsx)(Cd,{scrollTo:o})]})}y.createRoot(document.getElementById(`root`)).render((0,B.jsx)(b.StrictMode,{children:(0,B.jsx)(jd,{})}));
+      `})]})}function Ad(){let{scrolled:e,progress:t,activeSec:n,setActiveSec:r}=x(),i=(0,b.useRef)([]),a=e=>t=>{i.current[e]=t},o=e=>{i.current[e]?.scrollIntoView({behavior:`smooth`})};return(0,b.useEffect)(()=>{let e=()=>{i.current.forEach((e,t)=>{if(!e)return;let{top:n,bottom:i}=e.getBoundingClientRect();n<=window.innerHeight*.5&&i>=window.innerHeight*.5&&r(t)})};return window.addEventListener(`scroll`,e,{passive:!0}),()=>window.removeEventListener(`scroll`,e)},[]),(0,B.jsxs)(B.Fragment,{children:[(0,B.jsx)(Dd,{}),(0,B.jsx)(`div`,{style:{position:`fixed`,top:0,left:0,height:2,zIndex:9999,width:`${t}%`,background:`linear-gradient(90deg, ${X.gold}, ${X.goldLight}, ${X.gold})`,boxShadow:`0 0 8px ${X.gold}`,transition:`width 0.1s linear`}}),(0,B.jsx)(Ou,{scrolled:e,scrollTo:o}),(0,B.jsx)(`div`,{ref:a(0),children:(0,B.jsx)(Lu,{scrollTo:o})}),(0,B.jsx)(`div`,{ref:a(1),children:(0,B.jsx)(hd,{})}),(0,B.jsx)(`div`,{ref:a(2),children:(0,B.jsx)(Xu,{scrollTo:o})}),(0,B.jsx)(`div`,{ref:a(3),children:(0,B.jsx)($u,{})}),(0,B.jsx)(`div`,{ref:a(4),children:(0,B.jsx)(od,{})}),(0,B.jsx)(`div`,{ref:a(5),children:(0,B.jsx)(dd,{})}),(0,B.jsx)(kd,{}),(0,B.jsx)(`div`,{ref:a(6),children:(0,B.jsx)(yd,{})}),(0,B.jsx)(Cd,{scrollTo:o})]})}y.createRoot(document.getElementById(`root`)).render((0,B.jsx)(b.StrictMode,{children:(0,B.jsx)(Ad,{})}));
