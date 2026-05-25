@@ -58,8 +58,6 @@ export default function Hero({ scrollTo }) {
           }}>
             Cuidamos de cada detalhe do seu evento com excelência e planejamento completo. Unimos buffet, decoração e espaço, conduzidos por equipes especializadas que cuidam de cada detalhe.
           </motion.p>
-
-          
         </motion.div>
 
         <motion.div
