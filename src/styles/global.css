@@ -24,8 +24,6 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 body {
@@ -35,5 +33,3 @@ body {
   overflow-x: hidden;
   max-width: 100%;
 }
-
-::-webkit-scrollbar { display: none; }
