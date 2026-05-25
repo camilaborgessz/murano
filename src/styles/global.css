@@ -24,6 +24,25 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scrollbar-color: #c9a84c #0d1b3e;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1b3e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9a84c;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e2c06a;
 }
 
 body {
