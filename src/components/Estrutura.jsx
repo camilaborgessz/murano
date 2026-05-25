@@ -39,7 +39,7 @@ function InstagramEmbed({ url }) {
   }, [url])
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <blockquote
         className="instagram-media"
         data-instgrm-permalink={url}
@@ -48,30 +48,10 @@ function InstagramEmbed({ url }) {
         style={{
           background: '#fff', border: 0, borderRadius: 16,
           margin: 0, padding: 0, width: '100%', maxWidth: 420,
+          minHeight: 480,
           boxShadow: '0 16px 48px rgba(13,27,62,0.13)',
         }}
       />
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: 'inline-flex', alignItems: 'center', gap: 8,
-          padding: '10px 22px', borderRadius: 8,
-          border: `1.5px solid rgba(201,168,76,0.4)`,
-          background: 'transparent',
-          fontFamily: T.fontBody, fontSize: 12, fontWeight: 600,
-          letterSpacing: '0.12em', textTransform: 'uppercase',
-          color: T.navy, textDecoration: 'none',
-        }}
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="2" y="2" width="20" height="20" rx="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-        Ver no Instagram
-      </a>
     </div>
   )
 }
