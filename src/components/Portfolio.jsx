@@ -27,7 +27,7 @@ export default function Portfolio() {
       <div style={{ padding: 'clamp(60px,8vw,80px) clamp(24px,5vw,80px) 0' }}>
         <div style={{ marginBottom: -40 }}>
           <SectionHeader
-            eyebrow="Nosso Portfólio"
+
             title="Eventos que"
             titleSecond="Realizamos"
             light
@@ -93,7 +93,6 @@ export default function Portfolio() {
   )
 }
 
-/* ── Faixa de marquee com drag ───────────────────────── */
 function MarqueeRow({ images, direction, speed, height }) {
   const trackRef = useRef(null)
   const drag = useRef({ active: false, startX: 0, startTx: 0 })
@@ -139,15 +138,12 @@ function MarqueeRow({ images, direction, speed, height }) {
     const endX = drag.current.startTx + (e.clientX - drag.current.startX)
     const halfWidth = track.scrollWidth / 2
 
-    // Calcula animation-delay para retomar do ponto onde o usuário soltou
     let delay
     if (direction === 'left') {
-      // mqLeft: translateX(0) → translateX(-halfWidth)
       let pos = endX % halfWidth
-      if (pos > 0) pos -= halfWidth   // normaliza para [-halfWidth, 0]
-      delay = (pos / halfWidth) * speed // delay negativo = começa desse ponto
+      if (pos > 0) pos -= halfWidth
+      delay = (pos / halfWidth) * speed
     } else {
-      // mqRight: translateX(-halfWidth) → translateX(0)
       let pos = endX % halfWidth
       if (pos > 0) pos -= halfWidth
       const frac = 1 - Math.abs(pos) / halfWidth
@@ -168,20 +164,17 @@ function MarqueeRow({ images, direction, speed, height }) {
         userSelect: 'none',
       }}
     >
-      {/* Fade esquerdo */}
       <div style={{
         position: 'absolute', top: 0, left: 0, bottom: 0, width: 120, zIndex: 2,
         background: `linear-gradient(to right, ${T.navy}, transparent)`,
         pointerEvents: 'none',
       }} />
-      {/* Fade direito */}
       <div style={{
         position: 'absolute', top: 0, right: 0, bottom: 0, width: 120, zIndex: 2,
         background: `linear-gradient(to left, ${T.navy}, transparent)`,
         pointerEvents: 'none',
       }} />
 
-      {/* Track */}
       <div
         ref={trackRef}
         onPointerDown={onPointerDown}
@@ -204,7 +197,6 @@ function MarqueeRow({ images, direction, speed, height }) {
   )
 }
 
-/* ── Card individual ──────────────────────────────────── */
 function Card({ src, ratio, height, isDragging }) {
   const [hov, setHov] = useState(false)
 

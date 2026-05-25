@@ -19,19 +19,13 @@ export default function Hero({ scrollTo }) {
     }}>
       <HeroCanvas />
 
-      {/* Linha dourada no topo */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: 3, zIndex: 1,
         background: `linear-gradient(90deg,transparent,${T.gold} 40%,${T.goldLight} 60%,transparent)`,
       }} />
 
-      {/*
-        hero-layout: 2 áreas no desktop (esquerda = texto+botões, direita = cards)
-        no mobile vira 3 linhas: texto → cards → botões
-      */}
       <div className="hero-layout">
 
-        {/* ── TEXTO (badge + headline + descrição + divider) ── */}
         <motion.div
           className="hero-text"
           initial="hidden"
@@ -39,7 +33,6 @@ export default function Hero({ scrollTo }) {
           variants={stagger(0.13)}
           style={{ display: 'flex', flexDirection: 'column', gap: 28 }}
         >
-          {/* ── Logo ── */}
           <motion.div variants={fadeUp}>
             <img src={`${import.meta.env.BASE_URL}favicon.ico`} alt="Murano Eventos" style={{ height: 64, width: 'auto', display: 'block' }} />
           </motion.div>
@@ -72,7 +65,6 @@ export default function Hero({ scrollTo }) {
           }} />
         </motion.div>
 
-        {/* ── CARDS (grid 2×2 de imagens/stats) ──────────── */}
         <motion.div
           className="hero-cards"
           initial="hidden"
@@ -86,7 +78,6 @@ export default function Hero({ scrollTo }) {
             height: 'clamp(380px, 45vw, 500px)',
           }}
         >
-          {/* murano2.jpeg */}
           <motion.div className="hero-card" variants={fadeRight} style={{
             borderRadius: 18, overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(13,27,62,0.13)',
@@ -95,7 +86,6 @@ export default function Hero({ scrollTo }) {
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </motion.div>
 
-          {/* Card — Nossa essência */}
           <motion.div className="hero-card" variants={fadeUp} style={{
             borderRadius: 18, background: '#ffffff',
             boxShadow: '0 8px 32px rgba(13,27,62,0.08)',
@@ -116,7 +106,6 @@ export default function Hero({ scrollTo }) {
             </p>
           </motion.div>
 
-          {/* Card — Nossa visão */}
           <motion.div className="hero-card" variants={fadeUp} style={{
             borderRadius: 18, background: T.navy, overflow: 'hidden',
             boxShadow: '0 12px 40px rgba(13,27,62,0.22)',
@@ -136,7 +125,6 @@ export default function Hero({ scrollTo }) {
             </p>
           </motion.div>
 
-          {/* murano3.jpeg */}
           <motion.div className="hero-card" variants={fadeRight} style={{
             borderRadius: 18, overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(13,27,62,0.13)',
@@ -146,7 +134,6 @@ export default function Hero({ scrollTo }) {
           </motion.div>
         </motion.div>
 
-        {/* ── BOTÕES (área separada para controle de ordem no mobile) ── */}
         <motion.div
           className="hero-cta"
           initial="hidden"
@@ -190,7 +177,6 @@ export default function Hero({ scrollTo }) {
 
       </div>
 
-      {/* Scroll hint – só desktop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -215,9 +201,7 @@ export default function Hero({ scrollTo }) {
         />
       </motion.div>
 
-      {/* ── CSS layout ────────────────────────────────────── */}
       <style>{`
-        /* ── Desktop ──────────────────────────────────────── */
         .hero-layout {
           max-width: 1320px;
           margin: 0 auto;
@@ -243,12 +227,9 @@ export default function Hero({ scrollTo }) {
           align-self: center;
         }
 
-        /* ── Mobile (≤ 860px) ─────────────────────────────── */
         @media (max-width: 860px) {
           .hero-section {
             align-items: flex-start !important;
-            /* clip: não cria BFC (a seção cresce com o conteúdo) e bloqueia
-               overflow decorativo horizontal, eliminando a barra branca lateral */
             overflow: clip !important;
             min-height: 100svh !important;
           }
@@ -264,13 +245,11 @@ export default function Hero({ scrollTo }) {
           .hero-cta   { order: 2; }
           .hero-cards {
             order: 3;
-            /* altura automática + linhas explícitas garante as 2 linhas visíveis */
             height: auto !important;
             grid-template-rows: 130px 130px !important;
             gap: 10px !important;
           }
 
-          /* reduz logo no mobile para economizar altura */
           .hero-section .hero-text img {
             height: 48px !important;
           }
@@ -280,7 +259,6 @@ export default function Hero({ scrollTo }) {
 
           .hero-scroll-hint { display: none !important; }
 
-          /* cards de texto: fonte menor + overflow contido no mobile */
           .hero-card p {
             font-size: 10px !important;
             line-height: 1.55 !important;
@@ -289,14 +267,12 @@ export default function Hero({ scrollTo }) {
             -webkit-box-orient: vertical !important;
             overflow: hidden !important;
           }
-          /* esconde a linha decorativa dourada no card branco no mobile */
           .hero-card > div[style*="height: 2px"],
           .hero-card > div[style*="height:2px"] {
             display: none !important;
           }
         }
 
-        /* ── iPhone SE e telas muito pequenas (≤ 400px) ──── */
         @media (max-width: 400px) {
           .hero-layout {
             padding: 68px 16px 32px !important;
@@ -308,13 +284,11 @@ export default function Hero({ scrollTo }) {
           .hero-section .hero-text p {
             font-size: 13px !important;
           }
-          /* linhas menores no SE para caber no viewport */
           .hero-cards {
             grid-template-rows: 105px 105px !important;
           }
         }
 
-        /* ── Tablet (861 – 1080px) ────────────────────────── */
         @media (min-width: 861px) and (max-width: 1080px) {
           .hero-layout {
             padding: 100px 32px 48px;

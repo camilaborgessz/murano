@@ -40,7 +40,6 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      {/* Barra de progresso */}
       <div style={{
         position: 'fixed', top: 0, left: 0, height: 2, zIndex: 9999,
         width: `${progress}%`,

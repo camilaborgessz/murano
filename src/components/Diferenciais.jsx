@@ -26,12 +26,10 @@ export default function Diferenciais() {
       position: 'relative',
     }}>
 
-      {/* ── Background: MURANO repetido diagonal ── */}
       <MuranoPattern />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
 
-        {/* ── Título customizado ── */}
         <motion.div
           ref={titleRef.ref}
           initial={{ opacity: 0, y: 28 }}
@@ -39,14 +37,6 @@ export default function Diferenciais() {
           transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{ textAlign: 'center', marginBottom: 40 }}
         >
-          <p style={{
-            fontFamily: T.fontBody, fontSize: 11, fontWeight: 600,
-            letterSpacing: '0.28em', textTransform: 'uppercase',
-            color: T.gold, margin: '0 0 20px',
-          }}>
-            Por que nos escolher
-          </p>
-
           <h2 style={{
             fontFamily: T.fontDisplay,
             fontSize: 'clamp(38px, 5.8vw, 74px)',
@@ -69,7 +59,6 @@ export default function Diferenciais() {
           </div>
         </motion.div>
 
-        {/* ── Badges ── */}
         <motion.div
           ref={ref}
           variants={stagger}
@@ -89,7 +78,6 @@ export default function Diferenciais() {
           ))}
         </motion.div>
 
-        {/* ── Imagem ── */}
         <motion.div
           ref={imgRef.ref}
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
@@ -122,7 +110,6 @@ export default function Diferenciais() {
               animate={imgRef.inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: 0.55, duration: 0.7 }}
             >
-              {/* linha decorativa dourada */}
               <div style={{
                 width: 36, height: 2, borderRadius: 2, marginBottom: 14,
                 background: `linear-gradient(90deg, ${T.gold}, ${T.goldLight})`,
@@ -171,9 +158,6 @@ export default function Diferenciais() {
   )
 }
 
-/* ─────────────────────────────────────────────────
-   Padrão diagonal de fundo: "MURANO" repetido
-───────────────────────────────────────────────── */
 function MuranoPattern() {
   const cols = 6
   const rows = 7
@@ -222,9 +206,6 @@ function MuranoPattern() {
   )
 }
 
-/* ─────────────────────────────────────────────────
-   Badge — decorativo, sem clique
-───────────────────────────────────────────────── */
 function Badge({ d }) {
   return (
     <motion.div

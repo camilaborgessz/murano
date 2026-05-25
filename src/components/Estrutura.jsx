@@ -88,7 +88,6 @@ export default function Estrutura() {
       background: T.cream,
     }}>
 
-      {/* Título */}
       <motion.div
         ref={titleReveal.ref}
         initial={{ opacity: 0, y: 28 }}
@@ -112,7 +111,6 @@ export default function Estrutura() {
         </div>
       </motion.div>
 
-      {/* Layout: slider (esquerda) + Instagram (direita) */}
       <motion.div
         ref={bodyReveal.ref}
         initial={{ opacity: 0, y: 24 }}
@@ -127,10 +125,8 @@ export default function Estrutura() {
           alignItems: 'center',
         }}
       >
-        {/* Slider */}
         <div style={{ position: 'relative' }}>
 
-          {/* Plano de fundo decorativo */}
           <div aria-hidden="true" style={{
             position: 'absolute',
             top: -32, left: -32, right: -32, bottom: -32,
@@ -140,12 +136,10 @@ export default function Estrutura() {
             pointerEvents: 'none',
           }} />
 
-          {/* Card com setas nas laterais */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
 
             <NavBtn onClick={prev} disabled={current === 0} dir="left" />
 
-            {/* Card */}
             <div
               onPointerDown={onCardPointerDown}
               onPointerMove={onCardPointerMove}
@@ -162,7 +156,6 @@ export default function Estrutura() {
                 userSelect: 'none',
               }}>
 
-              {/* Número gigante de fundo */}
               <div aria-hidden="true" style={{
                 position: 'absolute', bottom: -20, right: 16,
                 fontFamily: T.fontDisplay, fontSize: 'clamp(90px,14vw,140px)',
@@ -174,7 +167,6 @@ export default function Estrutura() {
                 {ESTRUTURA[current].num}
               </div>
 
-              {/* Canto dourado superior esquerdo */}
               <div style={{
                 position: 'absolute', top: 0, left: 0,
                 width: 48, height: 48, pointerEvents: 'none',
@@ -182,7 +174,6 @@ export default function Estrutura() {
                 borderRadius: '20px 0 0 0',
               }} />
 
-              {/* Linha dourada lateral esquerda */}
               <div style={{
                 position: 'absolute', top: 24, bottom: 24, left: 0,
                 width: 3, borderRadius: '0 2px 2px 0',
@@ -199,7 +190,6 @@ export default function Estrutura() {
                   transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                   style={{ padding: 'clamp(24px,3.5vw,36px) clamp(24px,3.5vw,36px) clamp(24px,3.5vw,36px) clamp(28px,4vw,40px)', position: 'relative', zIndex: 1 }}
                 >
-                  {/* Número + contador */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                     <span style={{
                       fontFamily: T.fontDisplay, fontSize: 10, fontWeight: 700,
@@ -215,13 +205,11 @@ export default function Estrutura() {
                     </span>
                   </div>
 
-                  {/* Linha dourada */}
                   <div style={{
                     width: 28, height: 2, borderRadius: 2, marginBottom: 16,
                     background: `linear-gradient(90deg,${T.gold},${T.goldLight})`,
                   }} />
 
-                  {/* Título */}
                   <h4 style={{
                     fontFamily: T.fontDisplay,
                     fontSize: 'clamp(15px,1.8vw,19px)',
@@ -231,7 +219,6 @@ export default function Estrutura() {
                     {ESTRUTURA[current].title}
                   </h4>
 
-                  {/* Descrição */}
                   <p style={{
                     fontFamily: T.fontBody,
                     fontSize: 'clamp(12px,1.1vw,13px)',
@@ -247,7 +234,6 @@ export default function Estrutura() {
             <NavBtn onClick={next} disabled={current === ESTRUTURA.length - 1} dir="right" />
           </div>
 
-          {/* Dots abaixo */}
           <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 18, flexWrap: 'wrap' }}>
             {ESTRUTURA.map((_, i) => (
               <button
@@ -264,7 +250,6 @@ export default function Estrutura() {
           </div>
         </div>
 
-        {/* Instagram */}
         <div style={{ position: 'sticky', top: 100 }}>
           <InstagramEmbed url="https://www.instagram.com/p/DVytQ-rADvO/" />
         </div>

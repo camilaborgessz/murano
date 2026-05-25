@@ -30,22 +30,12 @@ export default function Footer({ scrollTo }) {
         marginBottom: 56,
       }}>
 
-        {/* ── Marca ── */}
         <div>
           <img
             src={`${import.meta.env.BASE_URL}favicon.ico`}
             alt="Murano Eventos"
             style={{ height: 56, width: 'auto', marginBottom: 20, display: 'block' }}
           />
-          <p style={{
-            fontFamily: T.fontBody, fontSize: 13, fontWeight: 300,
-            color: 'rgba(255,255,255,0.45)', lineHeight: 1.85,
-            maxWidth: 240, margin: '0 0 24px',
-          }}>
-            Há mais de 10 anos transformando momentos em memórias eternas.
-            Estrutura completa, buffet de alto padrão e decoração exclusiva em Porto Velho.
-          </p>
-          {/* Redes sociais */}
           <div style={{ display: 'flex', gap: 10 }}>
             <SocialBtn href={INSTA} label="Instagram">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -63,7 +53,6 @@ export default function Footer({ scrollTo }) {
           </div>
         </div>
 
-        {/* ── Localização ── */}
         <div>
           <ColTitle>Localização</ColTitle>
           <a
@@ -89,7 +78,6 @@ export default function Footer({ scrollTo }) {
           </a>
         </div>
 
-        {/* ── Contato ── */}
         <div>
           <ColTitle>Contato</ColTitle>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -110,7 +98,6 @@ export default function Footer({ scrollTo }) {
           </div>
         </div>
 
-        {/* ── Navegação ── */}
         <div>
           <ColTitle>Navegação</ColTitle>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -134,7 +121,6 @@ export default function Footer({ scrollTo }) {
         </div>
       </div>
 
-      {/* ── Rodapé inferior ── */}
       <div style={{
         borderTop: '1px solid rgba(255,255,255,0.06)',
         paddingTop: 24,

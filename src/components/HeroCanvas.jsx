@@ -27,7 +27,6 @@ export default function HeroCanvas() {
     window.addEventListener('resize', onResize)
     window.addEventListener('mousemove', onMove)
 
-    // ── Partículas ───────────────────────────────────────────
     const N = 65
     const particles = Array.from({ length: N }, (_, i) => ({
       x:    Math.random() * canvas.width,
@@ -35,7 +34,7 @@ export default function HeroCanvas() {
       vx:   (Math.random() - 0.5) * 0.35,
       vy:   (Math.random() - 0.5) * 0.35,
       r:    Math.random() * 1.8 + 0.8,
-      type: i % 3 === 0 ? 'gold' : 'navy',   // 1/3 dourado, 2/3 navy
+      type: i % 3 === 0 ? 'gold' : 'navy',
     }))
 
     const CONNECT = 140
@@ -44,7 +43,6 @@ export default function HeroCanvas() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Fundo gradiente animado – blobs suaves
       const t = Date.now() / 6000
       ;[
         { cx: 0.75 + 0.12 * Math.sin(t),       cy: 0.18 + 0.08 * Math.cos(t),       c: GOLD,  a: 0.07 },
@@ -61,7 +59,6 @@ export default function HeroCanvas() {
         ctx.fillRect(0, 0, canvas.width, canvas.height)
       })
 
-      // Atualiza partículas
       for (const p of particles) {
         const dx   = p.x - mouse.x
         const dy   = p.y - mouse.y
@@ -92,7 +89,6 @@ export default function HeroCanvas() {
         ctx.fill()
       }
 
-      // Conexões entre partículas próximas
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const a = particles[i], b = particles[j]

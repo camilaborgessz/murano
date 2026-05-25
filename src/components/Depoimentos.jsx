@@ -19,7 +19,6 @@ export default function Depoimentos() {
   const trackRef = useRef(null)
   const [current, setCurrent] = useState(0)
 
-  /* drag-to-scroll no track */
   const drag = useRef({ active: false, startX: 0, scrollLeft: 0 })
   const [isDragging, setIsDragging] = useState(false)
 
@@ -56,14 +55,12 @@ export default function Depoimentos() {
         style={{ padding: '0 clamp(24px,5vw,80px)', marginBottom: 56, textAlign: 'center' }}
       >
         <SectionHeader
-          eyebrow="O que dizem sobre nós"
           title="Experiências que"
           titleSecond="Ficam na Memória"
           light
         />
       </motion.div>
 
-      {/* Track deslizável */}
       <div
         ref={trackRef}
         onPointerDown={onPointerDown}
@@ -96,7 +93,6 @@ export default function Depoimentos() {
         ))}
       </div>
 
-      {/* Dots */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginTop: 8 }}>
         {DEPOIMENTOS.map((_, i) => (
           <button
@@ -128,7 +124,6 @@ export default function Depoimentos() {
   )
 }
 
-/* ── Card com flip ─────────────────────────────────────── */
 function DepoCard({ d, photoSrc, active, isDragging }) {
   const [flipped, setFlipped] = useState(false)
   const pointerStart = useRef(null)
@@ -165,7 +160,6 @@ function DepoCard({ d, photoSrc, active, isDragging }) {
           transformStyle: 'preserve-3d',
         }}
       >
-        {/* ── Frente ── */}
         <div style={{
           position: 'absolute', inset: 0,
           backfaceVisibility: 'hidden',
@@ -215,7 +209,6 @@ function DepoCard({ d, photoSrc, active, isDragging }) {
           }} />
         </div>
 
-        {/* ── Verso (foto) ── */}
         <div style={{
           position: 'absolute', inset: 0,
           backfaceVisibility: 'hidden',

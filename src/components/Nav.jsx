@@ -28,7 +28,6 @@ export default function Nav({ scrolled, scrollTo }) {
   return (
     <>
       <nav style={navStyle}>
-        {/* Logo */}
         <img
           src={`${import.meta.env.BASE_URL}favicon.ico`}
           alt="Murano"
@@ -36,7 +35,6 @@ export default function Nav({ scrolled, scrollTo }) {
           style={{ height: 46, cursor: 'pointer', objectFit: 'contain' }}
         />
 
-        {/* Links desktop – centro */}
         <ul className="nav-desktop" style={{
           display: 'flex', gap: 36, listStyle: 'none',
           alignItems: 'center', margin: 0, padding: 0,
@@ -59,7 +57,6 @@ export default function Nav({ scrolled, scrollTo }) {
           ))}
         </ul>
 
-        {/* Botão Contato – direita */}
         <motion.button
           className="nav-cta"
           onClick={() => scrollTo(SECTIONS.length - 1)}
@@ -77,7 +74,6 @@ export default function Nav({ scrolled, scrollTo }) {
           {contactLabel}
         </motion.button>
 
-        {/* Hamburger */}
         <button
           className="nav-hamburger"
           onClick={() => setMenuOpen(true)}
@@ -95,7 +91,6 @@ export default function Nav({ scrolled, scrollTo }) {
         </button>
       </nav>
 
-      {/* Menu mobile */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
