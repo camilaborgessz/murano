@@ -59,10 +59,7 @@ export default function Hero({ scrollTo }) {
             Cuidamos de cada detalhe do seu evento com excelência e planejamento completo. Unimos buffet, decoração e espaço, conduzidos por equipes especializadas que cuidam de cada detalhe.
           </motion.p>
 
-          <motion.div variants={fadeUp} style={{
-            width: 48, height: 2,
-            background: `linear-gradient(90deg,${T.gold},${T.goldLight})`,
-          }} />
+          
         </motion.div>
 
         <motion.div
@@ -154,24 +151,10 @@ export default function Hero({ scrollTo }) {
               whileHover={{ background: T.navyLight, scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >
-              Entrar em Contato <span style={{ fontSize: 14 }}>→</span>
+              Entrar em Contato <span style={{ fontSize: 14 }}></span>
             </motion.button>
 
-            <motion.button
-              onClick={() => scrollTo(4)}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 10,
-                background: 'transparent', color: T.navy,
-                border: `1.5px solid rgba(13,27,62,0.25)`,
-                padding: '14px 32px', fontFamily: T.fontBody,
-                fontSize: 11, fontWeight: 600, letterSpacing: '0.2em',
-                textTransform: 'uppercase', cursor: 'pointer', borderRadius: 8,
-              }}
-              whileHover={{ borderColor: T.gold, color: T.gold, scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Ver Eventos
-            </motion.button>
+            
           </motion.div>
         </motion.div>
 
