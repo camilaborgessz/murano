@@ -32,10 +32,7 @@ function InstagramEmbed({ url }) {
       s.src = 'https://www.instagram.com/embed.js'
       s.async = true; s.onload = load
       document.body.appendChild(s)
-    } else {
-      load()
-      setTimeout(load, 800)
-    }
+    } else { load() }
   }, [url])
 
   return (
@@ -44,11 +41,9 @@ function InstagramEmbed({ url }) {
         className="instagram-media"
         data-instgrm-permalink={url}
         data-instgrm-version="14"
-        data-instgrm-captioned
         style={{
           background: '#fff', border: 0, borderRadius: 16,
           margin: 0, padding: 0, width: '100%', maxWidth: 420,
-          minHeight: 480,
           boxShadow: '0 16px 48px rgba(13,27,62,0.13)',
         }}
       />
@@ -255,7 +250,7 @@ export default function Estrutura() {
           </div>
         </div>
 
-        <div className="insta-col" style={{ position: 'sticky', top: 100 }}>
+        <div style={{ position: 'sticky', top: 100 }}>
           <InstagramEmbed url="https://www.instagram.com/p/DVytQ-rADvO/" />
         </div>
       </motion.div>
@@ -264,10 +259,6 @@ export default function Estrutura() {
         @media (max-width: 760px) {
           .estrutura-outer {
             grid-template-columns: 1fr !important;
-          }
-          .insta-col {
-            position: static !important;
-            margin-top: 32px;
           }
         }
       `}</style>
