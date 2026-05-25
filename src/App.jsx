@@ -13,6 +13,7 @@ import Contato from './components/Contato'
 import Footer from './components/Footer'
 import GlobalStyles from './components/GlobalStyles'
 import MuranoBand from './components/MuranoBand'
+import SectionIndicator from './components/SectionIndicator'
 import { T } from './styles/tokens'
 
 export default function App() {
@@ -49,6 +50,7 @@ export default function App() {
       }} />
 
       <Nav scrolled={scrolled} scrollTo={scrollTo} />
+      <SectionIndicator active={activeSec} scrollTo={scrollTo} />
 
       <div ref={setRef(0)}><Hero scrollTo={scrollTo} /></div>
       <div ref={setRef(1)}><Depoimentos /></div>
