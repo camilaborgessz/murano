@@ -149,7 +149,7 @@ export default function Hero({ scrollTo }) {
               whileHover={{ background: T.navyLight, scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >
-              Entrar em Contato <span style={{ fontSize: 14 }}></span>
+              Entrar em Contato
             </motion.button>
 
             
